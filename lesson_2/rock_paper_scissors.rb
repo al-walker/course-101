@@ -1,4 +1,4 @@
-VALID_CHOICES = %w(rock paper scissors lizard spock)
+VALID_CHOICES = %w(rock paper scissors lizard Spock)
 
 def prompt(message)
   Kernel.puts("=> #{message}")
@@ -32,6 +32,19 @@ loop do
   loop do
     prompt("Choose one: #{VALID_CHOICES.join(', ')}")
     choice = gets.chomp
+
+    case choice
+    when 'r'
+      choice = "rock"
+    when 'p'
+      choice = "paper"
+    when 's'
+      choice = "scissors"
+    when 'l'
+      choice = "lizard"
+    when 'S'
+      choice = "Spock"
+    end
 
     if VALID_CHOICES.include?(choice)
       break
