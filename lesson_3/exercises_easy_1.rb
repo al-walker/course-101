@@ -73,9 +73,29 @@ how_deep = "number"
 p how_deep
 p eval(how_deep)
 
-# Question 9
+# Question 8
 
 flintstones = ["Fred", "Wilma"]
 flintstones << ["Barney", "Betty"]
 p flintstones << ["BamBam", "Pebbles"]
 p flintstones.flatten!
+
+# Question 9
+
+flintstones = { "Fred" => 0, "Wilma" => 1, "Barney" => 2, "Betty" => 3, "BamBam" => 4, "Pebbles" => 5 }
+
+p flintstones.to_a[2]
+
+# Question 10
+
+flintstones = ["Fred", "Barney", "Wilma", "Betty", "Pebbles", "BamBam"]
+p Hash[flintstones.map.with_index { |name, idx| [idx, name] }]
+# or
+new_hash = Hash[(0...flintstones.size).zip flintstones]
+p new_hash
+# or
+flintstones_hash = {}
+flintstones.each_with_index do |name, index|
+  flintstones_hash[name] = index
+end
+# I initially tried each_with_index, but when I started to look up details, I found the first two.  I put them here for future reference. (when I fully understand how they work)
