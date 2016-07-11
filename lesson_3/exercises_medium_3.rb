@@ -72,3 +72,41 @@ def fun_with_ids
 end
 
 fun_with_ids
+
+=begin
+Question 2
+
+1. Like before the 'outers' are not the same variables as those outside.
+2. Ruby is simply re-using the objects since he new variables have the same values as those outside
+3. When we change the values of our 'outers', Ruby uses new objects for these variabbles to deal with their new values.
+4. Even though we changed the values of our 'outer' variables inside the method call, we still have the same object id's after the method.
+5. Reason - Our method accepts values as parameters. The names we give those values in the definition of our method are separate from any other use of those same names.
+6. We could have called the parameters of our method anything.
+7. The method gets the values of th parameters we pass, but the parameter variables inside the method have no other relationship to those outside of the method.
+8. Our main method still has no access to variables that are defined inside of the method.
+
+Question 3
+
+1. Ruby treats string and array parameters exactly the same way.
+2. In both cases, Ruby passes the parameter 'by' value. The value that gets passed is a reference to som object.
+3. A string parameter is passed to the method as a reference to an object of type String.
+4. An Array parameter is passed to the method as a reference to an object of type Array.
+5. Th method makes up a new variable and puts the references in these new variables.  The new variables only live within the scope of the method.
+6. The String#+= operation is reassignment. (creates a new String object)
+7. The reference to this new object is placed in the internal variable of the method.
+8. The method has forgotten about the the one that was passed in now.
+9. Using the << operator Ruby simply keeps using the same object that was passed in and appends the new element to it.
+10. The caller's array variable and the method's array variable point at the same object. We see the results of what happened to the array outside of the method.
+
+Question 4
+
+1. With the Array#= ['pumpkins', 'rutabaga'] is a new object. We are setting the internal array variable equal to that new array literal object.
+=end
+
+#Question 5
+
+def color_valid(color)
+  color == "blue" || color == "green"
+end
+
+# Ruby will automatically evaluate statements, so the is statement is not necessary.
