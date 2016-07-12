@@ -16,7 +16,7 @@ end
 
 def initialize_board
   new_board = {}
-  (1..9).each {|num| new_board[num] = 'X'}
+  (1..9).each { |num| new_board[num] = 'X' }
   new_board
 end
 
