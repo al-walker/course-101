@@ -113,6 +113,7 @@ end
 
 def dot_separated_ip_address?(input_string)
   p dot_separated_words = input_string.split(".")
+  return false if dot_separated_words.size < 4
   while dot_separated_words.size > 0 do
     p word = dot_separated_words.pop
     return false if !is_a_number?(word)
@@ -120,4 +121,4 @@ def dot_separated_ip_address?(input_string)
   return true
 end
 
-p dot_separated_ip_address?('10.4.5.11')
+p dot_separated_ip_address?('a.c.b.e')
