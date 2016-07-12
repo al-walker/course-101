@@ -107,3 +107,17 @@ end
 p generate_UUID
 
 # Question 5
+def is_a_number?(word)
+  Integer(word) rescue false
+end
+
+def dot_separated_ip_address?(input_string)
+  p dot_separated_words = input_string.split(".")
+  while dot_separated_words.size > 0 do
+    p word = dot_separated_words.pop
+    return false if !is_a_number?(word)
+  end
+  return true
+end
+
+p dot_separated_ip_address?('10.4.5.11')
