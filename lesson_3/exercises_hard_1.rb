@@ -107,18 +107,23 @@ end
 p generate_UUID
 
 # Question 5
+
+# I needed to create an is_a_number? method.
+
 def is_a_number?(word)
   Integer(word) rescue false
 end
 
 def dot_separated_ip_address?(input_string)
-  p dot_separated_words = input_string.split(".")
-  return false if dot_separated_words.size < 4
+  dot_separated_words = input_string.split(".")
+  return false unless dot_separated_words.size == 4
   while dot_separated_words.size > 0 do
-    p word = dot_separated_words.pop
+    word = dot_separated_words.pop
     return false if !is_a_number?(word)
   end
-  return true
+  true
 end
 
 p dot_separated_ip_address?('a.c.b.e')
+p dot_separated_ip_address?('10.4.5.11')
+p dot_separated_ip_address?('10.4.5')
