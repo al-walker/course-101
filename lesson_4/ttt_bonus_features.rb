@@ -81,12 +81,16 @@ end
 def find_at_risk_square(line, board)
   if board.values_at(*line).count(PLAYER_MARKER) == 2
     board.select { |k, v| line.include?(k) && v == INITIAL_MARKER }.keys.first
+  else
+    nil
   end
 end
 
 def go_for_the_win(line, board)
   if board.values_at(*line).count(COMPUTER_MARKER) == 2
     board.select { |k, v| line.include?(k) && v == INITIAL_MARKER }.keys.first
+  else
+    nil
   end
 end
 
