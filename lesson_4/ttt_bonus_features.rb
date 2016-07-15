@@ -58,10 +58,17 @@ end
 
 def computer_places_piece!(brd)
   square = nil
+
   WINNING_LINES.each do |line|
     square = find_at_risk_square(line, brd)
     break if square
-    square = go_for_the_win(line, brd)
+  end
+
+  if !square
+    WINNING_LINES.each do |line|
+      square = go_for_the_win(line, brd)
+      break if square
+    end
   end
 
   if !square
