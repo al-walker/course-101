@@ -9,7 +9,6 @@ PLAYER_MARKER = 'X'
 COMPUTER_MARKER = 'O'
 FIRST_MOVE = "Choose"
 
-
 player_score = 0
 computer_score = 0
 
@@ -128,21 +127,28 @@ end
 
 loop do
   board = initialize_board
+  prompt "Choose first move. 1. Player 2. Computer"
+  first_move = gets.chomp
+  if first_move == "1"
+    loop do
+      display_board(board)
 
-  display_board(board)
+      player_places_piece!(board)
+      break if someone_won?(board) || board_full?(board)
 
-  player_places_piece!(board)
+      computer_places_piece!(board)
+      break if someone_won?(board) || board_full?(board)
+    end
+  else
+     loop do
+       display_board(board)
 
-  computer_places_piece!(board)
+       computer_places_piece!(board)
+       break if someone_won?(board) || board_full?(board)
 
-  loop do
-    display_board(board)
-
-    player_places_piece!(board)
-    break if someone_won?(board) || board_full?(board)
-
-    computer_places_piece!(board)
-    break if someone_won?(board) || board_full?(board)
+       player_places_piece!(board)
+       break if someone_won?(board) || board_full?(board)
+     end
   end
 
   display_board(board)
