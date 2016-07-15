@@ -74,7 +74,9 @@ def computer_places_piece!(brd)
   end
 
   if !square
-    square = brd.select { |k, _| k == 5 }.invert.fetch(' ')
+    if brd.values_at(5) == [" "]
+        square = brd.select { |k, _| k == 5 }.invert.fetch(' ')
+    end
   end
 
   if !square
@@ -125,10 +127,13 @@ def detect_winner(brd)
   nil
 end
 
+prompt "Choose first move. 1. Player 2. Computer"
+first_move = gets.chomp
+
 loop do
+
   board = initialize_board
-  prompt "Choose first move. 1. Player 2. Computer"
-  first_move = gets.chomp
+
   if first_move == "1"
     loop do
       display_board(board)
