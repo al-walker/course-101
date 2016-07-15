@@ -7,6 +7,9 @@ WINNING_LINES = [[1, 2, 3], [4, 5, 6], [7, 8, 9]] + # rows
 INITIAL_MARKER = ' '
 PLAYER_MARKER = 'X'
 COMPUTER_MARKER = 'O'
+FIRST_MOVE = "Choose"
+
+
 player_score = 0
 computer_score = 0
 
@@ -125,6 +128,12 @@ end
 
 loop do
   board = initialize_board
+
+  display_board(board)
+
+  player_places_piece!(board)
+
+  computer_places_piece!(board)
 
   loop do
     display_board(board)
