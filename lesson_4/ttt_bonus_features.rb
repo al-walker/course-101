@@ -9,7 +9,7 @@ PLAYER_MARKER = 'X'
 COMPUTER_MARKER = 'O'
 FIRST_MOVE = "Choose"
 
-first = ''
+first = ' '
 player_score = 0
 computer_score = 0
 
@@ -145,22 +145,24 @@ def detect_winner(brd)
 end
 
 # def move_order(move)
-#   prompt "Choose player order or random? Type C to choose R for random"
-#   order = gets.chomp.downcase
-#   if order == "c"
-#     prompt "Choose first move. 1. Player 2. Computer"
-#     move = gets.chomp
-#   else
-#     move = rand(1..2).to_s
-#   end
-#   first = move
-# end
-#
-# move_order(first)
+
+ # end
+
+ # move_order(first)
 
 loop do
 
   board = initialize_board
+
+  prompt "Choose player order or random? Type C to choose R for random"
+  order = gets.chomp.downcase
+
+  if order == "c"
+    prompt "Choose first move. 1. Player 2. Computer"
+    first = gets.chomp
+  else
+    first = rand(1..2).to_s
+  end
 
   if first == "1"
     prompt "Player's move."
