@@ -120,7 +120,6 @@ def player_move_first(brd)
 end
 
 def computer_move_first(brd)
-
   loop do
     display_board(brd)
 
@@ -144,27 +143,24 @@ def detect_winner(brd)
   nil
 end
 
-# def move_order(move)
+def move_order(move)
+  prompt "Choose player order or random? Type C to choose R for random"
+  order = gets.chomp.downcase
 
- # end
-
- # move_order(first)
+    if order == "c"
+      prompt "Choose first move. 1. Player 2. Computer"
+      move = gets.chomp
+    else
+      move = rand(1..2).to_s
+    end
+   move
+end
 
 loop do
 
   board = initialize_board
 
-  prompt "Choose player order or random? Type C to choose R for random"
-  order = gets.chomp.downcase
-
-  if order == "c"
-    prompt "Choose first move. 1. Player 2. Computer"
-    first = gets.chomp
-  else
-    first = rand(1..2).to_s
-  end
-
-  if first == "1"
+  if move_order(first) == "1"
     prompt "Player's move."
     player_move_first(board)
   else
