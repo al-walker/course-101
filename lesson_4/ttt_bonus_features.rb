@@ -9,6 +9,7 @@ PLAYER_MARKER = 'X'
 COMPUTER_MARKER = 'O'
 FIRST_MOVE = "Choose"
 
+first = ''
 player_score = 0
 computer_score = 0
 
@@ -106,18 +107,34 @@ def someone_won?(brd)
   !!detect_winner(brd)
 end
 
+def player_move_first(brd)
+  loop do
+    display_board(brd)
+
+    player_places_piece!(brd)
+    break if someone_won?(brd) || board_full?(brd)
+
+    computer_places_piece!(brd)
+    break if someone_won?(brd) || board_full?(brd)
+  end
+end
+
+def computer_move_first(brd)
+
+  loop do
+    display_board(brd)
+
+    computer_places_piece!(brd)
+    display_board(brd)
+    break if someone_won?(brd) || board_full?(brd)
+
+    player_places_piece!(brd)
+    break if someone_won?(brd) || board_full?(brd)
+  end
+end
+
 def detect_winner(brd)
   WINNING_LINES.each do |line|
-    # if brd[line[0]] == PLAYER_MARKER &&
-    #    brd[line[1]] == PLAYER_MARKER &&
-    #    brd[line[2]] == PLAYER_MARKER
-    #   return 'Player'
-    # elsif brd[line[0]] == COMPUTER_MARKER &&
-    #       brd[line[1]] == COMPUTER_MARKER &&
-    #       brd[line[2]] == COMPUTER_MARKER
-    #   return 'Computer'
-    # end
-    # (line[0], line[1], line[2]) same as (*line)
     if brd.values_at(*line).count(PLAYER_MARKER) == 3
       return 'Player'
     elsif brd.values_at(*line).count(COMPUTER_MARKER) == 3
@@ -127,33 +144,30 @@ def detect_winner(brd)
   nil
 end
 
-prompt "Choose first move. 1. Player 2. Computer"
-first_move = gets.chomp
+# def move_order(move)
+#   prompt "Choose player order or random? Type C to choose R for random"
+#   order = gets.chomp.downcase
+#   if order == "c"
+#     prompt "Choose first move. 1. Player 2. Computer"
+#     move = gets.chomp
+#   else
+#     move = rand(1..2).to_s
+#   end
+#   first = move
+# end
+#
+# move_order(first)
 
 loop do
 
   board = initialize_board
 
-  if first_move == "1"
-    loop do
-      display_board(board)
-
-      player_places_piece!(board)
-      break if someone_won?(board) || board_full?(board)
-
-      computer_places_piece!(board)
-      break if someone_won?(board) || board_full?(board)
-    end
+  if first == "1"
+    prompt "Player's move."
+    player_move_first(board)
   else
-     loop do
-       display_board(board)
-
-       computer_places_piece!(board)
-       break if someone_won?(board) || board_full?(board)
-
-       player_places_piece!(board)
-       break if someone_won?(board) || board_full?(board)
-     end
+    prompt "Computer moves first"
+    computer_move_first(board)
   end
 
   display_board(board)
@@ -176,5 +190,6 @@ loop do
   answer = gets.chomp
   break unless answer.downcase.start_with?('y')
 
-  prompt "Thanks for playing Tic Tac Toe! Good bye!"
 end
+
+prompt "Thanks for playing Tic Tac Toe! Good bye!"
