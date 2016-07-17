@@ -107,27 +107,32 @@ def someone_won?(brd)
   !!detect_winner(brd)
 end
 
-def player_move_first(brd)
+def place_piece!(board, current_player)
+  send("#{current_player}_places_piece!", board)
+end
+
+def alternate_player(current_player)
+  if current_player == 'player'
+    'computer'
+  else
+    'player'
+  end
+end
+
+def player_move_first(brd, current_player)
   loop do
     display_board(brd)
-
-    player_places_piece!(brd)
-    break if someone_won?(brd) || board_full?(brd)
-
-    computer_places_piece!(brd)
+    place_piece!(brd, current_player)
+    current_player = alternate_player(current_player)
     break if someone_won?(brd) || board_full?(brd)
   end
 end
 
-def computer_move_first(brd)
+def computer_move_first(brd, current_player)
   loop do
     display_board(brd)
-
-    computer_places_piece!(brd)
-    display_board(brd)
-    break if someone_won?(brd) || board_full?(brd)
-
-    player_places_piece!(brd)
+    place_piece!(brd, current_player)
+    current_player = alternate_player(current_player)
     break if someone_won?(brd) || board_full?(brd)
   end
 end
@@ -160,10 +165,10 @@ loop do
 
   if move_order(first) == "1"
     prompt "Player's move."
-    player_move_first(board)
+    player_move_first(board, current_player = 'player')
   else
     prompt "Computer moves first"
-    computer_move_first(board)
+    computer_move_first(board, current_player = 'computer')
   end
 
   display_board(board)
