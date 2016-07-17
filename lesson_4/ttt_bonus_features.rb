@@ -76,7 +76,7 @@ def computer_places_piece!(brd)
 
   if !square
     if brd.values_at(5) == [" "]
-        square = brd.select { |k, _| k == 5 }.invert.fetch(' ')
+      square = brd.select { |k, _| k == 5 }.invert.fetch(' ')
     end
   end
 
@@ -146,18 +146,16 @@ end
 def move_order(move)
   prompt "Choose player order or random? Type C to choose R for random"
   order = gets.chomp.downcase
-
-    if order == "c"
-      prompt "Choose first move. 1. Player 2. Computer"
-      move = gets.chomp
-    else
-      move = rand(1..2).to_s
-    end
-   move
+  if order == "c"
+    prompt "Choose first move. 1. Player 2. Computer"
+    move = gets.chomp
+  else
+    move = rand(1..2).to_s
+  end
+  move
 end
 
 loop do
-
   board = initialize_board
 
   if move_order(first) == "1"
@@ -187,7 +185,6 @@ loop do
   prompt "Play again? (y or n)"
   answer = gets.chomp
   break unless answer.downcase.start_with?('y')
-
 end
 
 prompt "Thanks for playing Tic Tac Toe! Good bye!"
