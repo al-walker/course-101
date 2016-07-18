@@ -41,6 +41,7 @@ players_cards = []
 dealers_cards = []
 initial_cards = []
 cards_played = []
+round = 0
 
 def initialize_deck
   deck
@@ -71,8 +72,28 @@ def computer_hand
   dealers_cards << cards_played[3]
 end
 
-def play_round(deck, cards_played)
+def deal_one_card(hand)
+  if hand == 'player'
+    deck.each do |k, v|
+      suit = k.to_a.sample(2)
+      initial_cards = v.sample(2)
+      cards_played << "#{initial_cards.fetch(0)}" + " of " + "#{suit.fetch(0).capitalize}"
+      break if cards_played != cards_played.uniq
+      players_cards << "#{initial_cards.fetch(0)}" + " of " + "#{suit.fetch(0).capitalize}"
+    end
+  end
+    if cards_played.count != round + 2
+      deal_cards(deck, cards_played)
+    end
+end
 
+def play_round(deck, cards_played)
+  puts "Hit or Stay"
+  answer = gets.chomp.downcase
+  if answer == "hit"
+    deal_one_card('player')
+  end
+  round += 1
 end
 
 def calculate_cards(hand)
