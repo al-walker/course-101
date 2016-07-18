@@ -31,27 +31,34 @@
 #1. Initialize deck
 deck = []
 value = 1
-values = []
-12.times do |card|
-  value += 1
-  if value == 1 || value == 2 || value == 3 || value == 4 || value == 5 || value == 6 || value == 7 || value == 8 || value == 9
-    card = 'Hearts'
-    new_value = value
-   elsif value == 10
-     card = 'Jack of Hearts'
-     new_value = 10
-   elsif value == 11
-     new_value = 10
-     card = 'Queen of Hearts'
-   elsif value == 12
-     new_value = 10
-     card = 'King of Hearts'
-   elsif value == 13
-     card = 'Ace of Hearts'
-     new_value = [1, 11]
-   end
-   deck << [card, new_value]
+suits = ['Hearts', 'Spades', 'Diamonds', 'Clubs']
+
+def initialize_deck(deck, array, value)
+  array.each do |suit|
+    value = 1
+    12.times do |card|
+      value += 1
+      if value == 2 || value == 3 || value == 4 || value == 5 || value == 6 || value == 7 || value == 8 || value == 9
+        card = suit
+        new_value = value
+       elsif value == 10
+         card = "Jack of #{suit}"
+         new_value = 10
+       elsif value == 11
+         new_value = 10
+         card = "Queen of #{suit}"
+       elsif value == 12
+         new_value = 10
+         card = "King of #{suit}"
+       elsif value == 13
+         card = "Ace of #{suit}"
+         new_value = [1, 11]
+       end
+       deck << [card, new_value]
+     end
+  end
 end
+initialize_deck(deck, suits, value)
 p deck
 # 2. Deal cards to player and dealer
 # player_hand = []
