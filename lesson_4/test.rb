@@ -37,8 +37,9 @@
 deck = { ['hearts', 'clubs', 'spades', 'diamonds'] =>
          [2 ,3 , 4, 5, 6, 7, 8, 9, 'King', 'Queen', 'Jack', 'Ace' ]
        }
-players_cards = {}
-dealers_cards = {}
+players_cards = []
+dealers_cards = []
+initial_cards = []
 
 def initialize_deck
   deck
@@ -47,14 +48,35 @@ end
 def deal_cards(deck)
   deck.each do |k, v|
     suit = k.to_a.sample(2)
-    initial_cards_values = v.sample(2)
-    puts "#{initial_cards_values.fetch(0)}" + " of " + "#{suit.fetch(0).capitalize}"
-    puts "#{initial_cards_values.fetch(1)}" + " of " + "#{suit.fetch(1).capitalize}"
+    initial_cards = v.sample(2)
+    puts "#{initial_cards.fetch(0)}" + " of " + "#{suit.fetch(0).capitalize}"
+    puts "#{initial_cards.fetch(1)}" + " of " + "#{suit.fetch(1).capitalize}"
     end
 end
 
+def Player_hand
+  players_cards = []
+end
+
+def computer_hand
+  dealers_cards = []
+end
+
+def calculate_cards(hand)
+  hand.each do |card|
+    if card == 'King' || card == 'Queen' || card == 'Jack'
+      card_value = 10
+    elsif card == 'Ace'
+      card_value == [1, 11]
+    else
+      card_value = card
+    end
+  end
+end
+
 deal_cards(deck)
-# 3. Player turn: hit or stay
+
+#3. Player turn: hit or stay
   # - repeat until bust or "stay"
 # 4. If player bust, dealer wins.
 # 5. Dealer turn: hit or stay
