@@ -29,98 +29,35 @@
 # 21
 
 #1. Initialize deck
-# jack = 10
-# queen = 10
-# king = 10
-# ace = [1, 11]
-clubs = []
-hearts = []
 deck = []
-suits = ['hearts', 'clubs', 'spades', 'diamonds']
-values = [2 ,3 , 4, 5, 6, 7, 8, 9, 'King', 'Queen', 'Jack', 'Ace' ]
-12.times {hearts << 'Hearts'}
-12.times {clubs << 'Clubs'}
-hearts.zip(values)
-deck << hearts.zip(values)
-puts deck
-# players_cards = []
-# dealers_cards = []
-# initial_cards = []
-# cards_played = []
-# round = 0
-#
-# def play(deck, cards_played, players_cards)
-#   deal_cards(deck, cards_played, players_cards)
-# end
-# # 2. Deal cards to player and dealer
-# def deal_cards(deck, cards_played, players_cards, round)
-#   deck.each do |k, v|
-#     suit = k.to_a.sample(2)
-#     initial_cards = v.sample(2)
-#     p cards_played << "#{initial_cards.fetch(0)}" + " of " + "#{suit.fetch(0).capitalize}"
-#     p cards_played << "#{initial_cards.fetch(1)}" + " of " + "#{suit.fetch(1).capitalize}"
-#     break if cards_played != cards_played.uniq
-#     puts "#{initial_cards.fetch(0)}" + " of " + "#{suit.fetch(0).capitalize}"
-#     puts "#{initial_cards.fetch(1)}" + " of " + "#{suit.fetch(1).capitalize}"
-#   end
-#   if cards_played.count != 4
-#     deal_cards(deck, cards_played, players_cards)
-#   end
-#   play_round(deck, cards_played, players_cards, round)
-# end
-#
-# def player_hand(cards_played)
-#   players_cards << cards_played[0]
-#   players_cards << cards_played[1]
-# end
-#
-# def computer_hand
-#   dealers_cards << cards_played[2]
-#   dealers_cards << cards_played[3]
-# end
-#
-# def deal_one_card(deck, hand, cards_played, players_cards, round)
-#   if hand == 'player'
-#     deck.each do |k, v|
-#       suit = k.to_a.sample(2)
-#       initial_cards = v.sample(2)
-#       cards_played << "#{initial_cards.fetch(0)}" + " of " + "#{suit.fetch(0).capitalize}"
-#       break if cards_played != cards_played.uniq
-#       players_cards << "#{initial_cards.fetch(0)}" + " of " + "#{suit.fetch(0).capitalize}"
-#     end
-#   end
-#     if cards_played.count != round + 2
-#       deal_cards(deck, cards_played)
-#     end
-# end
-#
-# def play_round(deck, cards_played, players_cards, round)
-#   loop do
-#   puts "Hit or Stay"
-#   answer = gets.chomp.downcase
-#   if answer == "hit"
-#     deal_one_card(deck, 'player', cards_played, players_cards, round)
-#     round += 1
-#   else
-#     round += 1
-#   end
-# end
-# end
-#
-# def calculate_cards(hand)
-#   hand.each do |card|
-#     if card == 'King' || card == 'Queen' || card == 'Jack'
-#       card_value = 10
-#     elsif card == 'Ace'
-#       card_value == [1, 11]
-#     else
-#       card_value = card
-#     end
-#   end
-# end
-#
-# play(deck, cards_played, players_cards)
-
+value = 1
+values = []
+12.times do |card|
+  value += 1
+  if value == 1 || value == 2 || value == 3 || value == 4 || value == 5 || value == 6 || value == 7 || value == 8 || value == 9
+    card = 'Hearts'
+    new_value = value
+   elsif value == 10
+     card = 'Jack of Hearts'
+     new_value = 10
+   elsif value == 11
+     new_value = 10
+     card = 'Queen of Hearts'
+   elsif value == 12
+     new_value = 10
+     card = 'King of Hearts'
+   elsif value == 13
+     card = 'Ace of Hearts'
+     new_value = [1, 11]
+   end
+   deck << [card, new_value]
+end
+p deck
+# 2. Deal cards to player and dealer
+# player_hand = []
+# player_hand << deck.slice!(rand(1..52))
+# p player_hand
+# p deck
 #3. Player turn: hit or stay
   # - repeat until bust or "stay"
 # 4. If player bust, dealer wins.
