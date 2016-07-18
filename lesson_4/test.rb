@@ -1,23 +1,64 @@
 # TTT Bonus feature 1
 
-def joinor(array, delimiter = ', ', last_delimiter = 'or')
-  if array.size == 2
-    p "#{array[0]} #{last_delimiter} #{array[1]}"
-  elsif array.size > 1
-    p "#{array[0...-1].join(delimiter)}#{delimiter}#{last_delimiter} #{array[-1]}"
-  else
-    p "#{array[0]}"
-  end
-end
-
-joinor([1, 2, 3])                # => "1, 2, or 3"
-joinor([1, 2, 3], '; ')          # => "1; 2; or 3"
-joinor([1, 2, 3], ', ', 'and')   # => "1, 2, and 3"
-joinor([1, 2])
-joinor([1])
+# def joinor(array, delimiter = ', ', last_delimiter = 'or')
+#   if array.size == 2
+#     p "#{array[0]} #{last_delimiter} #{array[1]}"
+#   elsif array.size > 1
+#     p "#{array[0...-1].join(delimiter)}#{delimiter}#{last_delimiter} #{array[-1]}"
+#   else
+#     p "#{array[0]}"
+#   end
+# end
+#
+# joinor([1, 2, 3])                # => "1, 2, or 3"
+# joinor([1, 2, 3], '; ')          # => "1; 2; or 3"
+# joinor([1, 2, 3], ', ', 'and')   # => "1, 2, and 3"
+# joinor([1, 2])
+# joinor([1])
 
 # for study purposes to compare my solution
 # def joinor(arr, delimiter=', ', word='or')
 #   arr[-1] = "#{word} #{arr.last}" if arr.size > 1
 #   arr.size == 2 ? arr.join(' ') : arr.join(delimiter)
 # end
+# IMMEDIATE_THREAT.each do |line|
+#   if brd.values_at(*line).count(PLAYER_MARKER) == 2
+#
+#   end
+# end
+# 21
+
+#1. Initialize deck
+jack = 10
+queen = 10
+king = 10
+ace = [1, 11]
+
+deck = { ['hearts', 'clubs', 'spades', 'diamonds'] =>
+         [2 ,3 , 4, 5, 6, 7, 8, 9, 10, [1, 11] ]
+       }
+players_cards = {}
+dealers_cards = {}
+
+def initialize_deck
+  deck
+end
+# 2. Deal cards to player and dealer
+def deal_cards(deck)
+
+  deck.each do |k, v|
+    p suit = k.to_a.sample(2)
+    p initial_cards_values = v.sample(2)
+    puts "#{initial_cards_values.fetch(0)}" + " of " + "#{suit.fetch(0).capitalize}"
+    puts "#{initial_cards_values.fetch(1)}" + " of " + "#{suit.fetch(1).capitalize}"
+    end
+end
+
+deal_cards(deck)
+# 3. Player turn: hit or stay
+  # - repeat until bust or "stay"
+# 4. If player bust, dealer wins.
+# 5. Dealer turn: hit or stay
+  # - repeat until total >= 17
+# 6. If dealer bust, player wins.
+# 7. Compare cards and declare winner.
