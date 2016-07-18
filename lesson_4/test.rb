@@ -29,13 +29,13 @@
 # 21
 
 #1. Initialize deck
-jack = 10
-queen = 10
-king = 10
-ace = [1, 11]
+# jack = 10
+# queen = 10
+# king = 10
+# ace = [1, 11]
 
 deck = { ['hearts', 'clubs', 'spades', 'diamonds'] =>
-         [2 ,3 , 4, 5, 6, 7, 8, 9, 10, [1, 11] ]
+         [2 ,3 , 4, 5, 6, 7, 8, 9, 'King', 'Queen', 'Jack', 'Ace' ]
        }
 players_cards = {}
 dealers_cards = {}
@@ -45,10 +45,9 @@ def initialize_deck
 end
 # 2. Deal cards to player and dealer
 def deal_cards(deck)
-
   deck.each do |k, v|
-    p suit = k.to_a.sample(2)
-    p initial_cards_values = v.sample(2)
+    suit = k.to_a.sample(2)
+    initial_cards_values = v.sample(2)
     puts "#{initial_cards_values.fetch(0)}" + " of " + "#{suit.fetch(0).capitalize}"
     puts "#{initial_cards_values.fetch(1)}" + " of " + "#{suit.fetch(1).capitalize}"
     end
