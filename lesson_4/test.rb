@@ -40,26 +40,29 @@ deck = { ['hearts', 'clubs', 'spades', 'diamonds'] =>
 players_cards = []
 dealers_cards = []
 initial_cards = []
+cards_played = []
 
 def initialize_deck
   deck
 end
 # 2. Deal cards to player and dealer
-def deal_cards(deck)
+def deal_cards(deck, cards_played)
   deck.each do |k, v|
     suit = k.to_a.sample(2)
     initial_cards = v.sample(2)
+    cards_played << "#{initial_cards.fetch(0)}" + " of " + "#{suit.fetch(0).capitalize}"
+    cards_played << "#{initial_cards.fetch(1)}" + " of " + "#{suit.fetch(1).capitalize}"
     puts "#{initial_cards.fetch(0)}" + " of " + "#{suit.fetch(0).capitalize}"
     puts "#{initial_cards.fetch(1)}" + " of " + "#{suit.fetch(1).capitalize}"
     end
 end
 
-def Player_hand
-  players_cards = []
+def player_hand(card_number)
+  players_cards << initial_cards.slice!(card_number)
 end
 
 def computer_hand
-  dealers_cards = []
+  dealers_cards << initial_cards.slice!(card_number)
 end
 
 def calculate_cards(hand)
@@ -74,7 +77,7 @@ def calculate_cards(hand)
   end
 end
 
-deal_cards(deck)
+deal_cards(deck, cards_played)
 
 #3. Player turn: hit or stay
   # - repeat until bust or "stay"
