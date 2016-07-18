@@ -50,19 +50,29 @@ def deal_cards(deck, cards_played)
   deck.each do |k, v|
     suit = k.to_a.sample(2)
     initial_cards = v.sample(2)
-    cards_played << "#{initial_cards.fetch(0)}" + " of " + "#{suit.fetch(0).capitalize}"
-    cards_played << "#{initial_cards.fetch(1)}" + " of " + "#{suit.fetch(1).capitalize}"
+    p cards_played << "#{initial_cards.fetch(0)}" + " of " + "#{suit.fetch(0).capitalize}"
+    p cards_played << "#{initial_cards.fetch(1)}" + " of " + "#{suit.fetch(1).capitalize}"
+    break if cards_played != cards_played.uniq
     puts "#{initial_cards.fetch(0)}" + " of " + "#{suit.fetch(0).capitalize}"
     puts "#{initial_cards.fetch(1)}" + " of " + "#{suit.fetch(1).capitalize}"
-    end
+  end
+  if cards_played.count != 4
+    deal_cards(deck, cards_played)
+  end
 end
 
-def player_hand(card_number)
-  players_cards << initial_cards.slice!(card_number)
+def player_hand(cards_played)
+  players_cards << cards_played[0]
+  players_cards << cards_played[1]
 end
 
 def computer_hand
-  dealers_cards << initial_cards.slice!(card_number)
+  dealers_cards << cards_played[2]
+  dealers_cards << cards_played[3]
+end
+
+def play_round(deck, cards_played)
+
 end
 
 def calculate_cards(hand)
