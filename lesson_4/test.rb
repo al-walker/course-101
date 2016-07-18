@@ -30,41 +30,75 @@
 
 #1. Initialize deck
 deck = []
-value = 1
+value = 0
 suits = ['Hearts', 'Spades', 'Diamonds', 'Clubs']
 
 def initialize_deck(deck, array, value)
   array.each do |suit|
-    value = 1
-    12.times do |card|
-      value += 1
-      if value == 2 || value == 3 || value == 4 || value == 5 || value == 6 || value == 7 || value == 8 || value == 9
+    value = 2
+    13.times do |card|
+      if value == 2 || value == 3 || value == 4 || value == 5 || value == 6 || value == 7 || value == 8 || value == 9 || value == 10
         card = suit
         new_value = value
-       elsif value == 10
+      elsif value == 11
          card = "Jack of #{suit}"
          new_value = 10
-       elsif value == 11
-         new_value = 10
-         card = "Queen of #{suit}"
        elsif value == 12
          new_value = 10
-         card = "King of #{suit}"
+         card = "Queen of #{suit}"
        elsif value == 13
+         new_value = 10
+         card = "King of #{suit}"
+       else value == 14
          card = "Ace of #{suit}"
          new_value = [1, 11]
        end
        deck << [card, new_value]
+       value += 1
      end
   end
 end
 initialize_deck(deck, suits, value)
-p deck
+#p deck.count
 # 2. Deal cards to player and dealer
-# player_hand = []
-# player_hand << deck.slice!(rand(1..52))
-# p player_hand
-# p deck
+player_hand = []
+player_hand = []
+dealer_hand = []
+def deal(deck, player_hand, dealer_hand)
+  puts "Hit or Stay"
+  answer = gets.chomp.downcase
+    if answer == 'hit'
+    player_hand << deck.slice!(rand(1..52))
+    end
+end
+
+def dealer(deck, player_hand, dealer_hand)
+  dealer_hand.each do |array|
+    p array
+   if v += v > 17
+     puts "Hello"
+   else v += v < 17
+     dealer_hand << deck.slice!(rand(1..52))
+   end
+ #end
+ end
+end
+
+def start_game(deck, player_hand, dealer_hand)
+  2.times { player_hand << deck.slice!(rand(1..52)) }
+  2.times { dealer_hand << deck.slice!(rand(1..52)) }
+end
+
+start_game(deck, player_hand, dealer_hand)
+p player_hand
+p dealer_hand
+p dealer_hand[0]
+deal(deck, player_hand, dealer_hand)
+#dealer(deck, player_hand, dealer_hand)
+p dealer_hand
+p dealer_hand.count
+p player_hand.count
+p deck.count
 #3. Player turn: hit or stay
   # - repeat until bust or "stay"
 # 4. If player bust, dealer wins.
