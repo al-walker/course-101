@@ -65,11 +65,14 @@ player_hand = []
 player_hand = []
 dealer_hand = []
 def deal(deck, player_hand, dealer_hand)
+  loop do
   puts "Hit or Stay"
   answer = gets.chomp.downcase
+  break if answer == 'stay'
     if answer == 'hit'
     player_hand << deck.slice!(rand(1..52))
     end
+  end
 end
 
 def dealer(deck, player_hand, dealer_hand)
