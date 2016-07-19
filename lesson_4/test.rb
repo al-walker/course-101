@@ -76,29 +76,39 @@ def deal(deck, player_hand, dealer_hand)
   end
 end
 
-def sum_dealer_cards
-  dealer_hand.each do |value|
-    values << value[1]
-  end
-  sum = values.reduce(:+)
-end
+# def sum_dealer_cards
+#   dealer_hand.each do |value|
+#     values << value[1]
+#   end
+#   sum = values.reduce(:+)
+# end
 
 def dealer(deck, player_hand, dealer_hand)
   values = []
-    # dealer_hand.each do |value|
-    #   values << value[1]
-    # end
-    # sum = values.reduce(:+)
       loop do
+        values.clear
         dealer_hand.each do |value|
+          if value[1] == "[1, 11]"
+            pick = value[1].select { |num| num + 10  <= 21 }
+              values << pick
+          else
           values << value[1]
         end
+        end
         sum = values.reduce(:+)
+        p sum
       if sum <= 17
         puts "Dealer hits."
-        dealer_hand << deck.slice!(rand(1..52))
+        new_card = deck.slice!(rand(1..52))
+        if new_card == [1, 11]
+          pick = new_card.select { |num| num + sum <= 21 }
+            dealer_hand << pick
+        else
+           dealer_hand << new_card
+        end
       else
         puts "Dealer stays."
+        p sum
         break
       end
   end
