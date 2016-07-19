@@ -1,3 +1,4 @@
+require 'pry'
 # TTT Bonus feature 1
 
 # def joinor(array, delimiter = ', ', last_delimiter = 'or')
@@ -75,33 +76,48 @@ def deal(deck, player_hand, dealer_hand)
   end
 end
 
-def dealer(deck, player_hand, dealer_hand)
-  dealer_hand.each do |array|
-    p array
-   if v += v > 17
-     puts "Hello"
-   else v += v < 17
-     dealer_hand << deck.slice!(rand(1..52))
-   end
- #end
- end
+def sum_dealer_cards
+  dealer_hand.each do |value|
+    values << value[1]
+  end
+  sum = values.reduce(:+)
 end
 
+def dealer(deck, player_hand, dealer_hand)
+  values = []
+    # dealer_hand.each do |value|
+    #   values << value[1]
+    # end
+    # sum = values.reduce(:+)
+      loop do
+        dealer_hand.each do |value|
+          values << value[1]
+        end
+        sum = values.reduce(:+)
+      if sum <= 17
+        puts "Dealer hits."
+        dealer_hand << deck.slice!(rand(1..52))
+      else
+        puts "Dealer stays."
+        break
+      end
+  end
+end
 def start_game(deck, player_hand, dealer_hand)
   2.times { player_hand << deck.slice!(rand(1..52)) }
   2.times { dealer_hand << deck.slice!(rand(1..52)) }
 end
 
 start_game(deck, player_hand, dealer_hand)
-p player_hand
-p dealer_hand
-p dealer_hand[0]
-deal(deck, player_hand, dealer_hand)
-#dealer(deck, player_hand, dealer_hand)
-p dealer_hand
-p dealer_hand.count
-p player_hand.count
-p deck.count
+#p player_hand
+#p dealer_hand
+#p dealer_hand[0]
+#deal(deck, player_hand, dealer_hand)
+dealer(deck, player_hand, dealer_hand)
+#p dealer_hand
+#p dealer_hand.count
+#p player_hand.count
+#p deck.count
 #3. Player turn: hit or stay
   # - repeat until bust or "stay"
 # 4. If player bust, dealer wins.
