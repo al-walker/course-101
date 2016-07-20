@@ -1,3 +1,8 @@
+require 'pry'
+
+player_hand = []
+dealer_hand = []
+
 #1. Initialize deck
 
 deck =
@@ -14,4 +19,11 @@ deck =
 ["Jack of Clubs", 10], ["Queen of Clubs", 10], ["King of Clubs", 10],
 ["Ace of Clubs", [1, 11]]]
 
-p deck
+# 2. Deal cards to player and dealer
+
+def start_game(deck, player_hand, dealer_hand)
+  2.times { player_hand << deck.slice!(rand(0..deck.size)) }
+  2.times { dealer_hand << deck.slice!(rand(0..deck.size)) }
+end
+
+start_game(deck, player_hand, dealer_hand)
