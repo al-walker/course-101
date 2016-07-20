@@ -30,32 +30,91 @@ end
   # - repeat until bust or "stay"
 
 def player_turn(deck, player_hand)
+  sum = 0
   answer = ''
-  until answer == 'stay' || determine_bust(player_hand) > 21
+  until answer == 'stay'
   puts "Hit or Stay"
   answer = gets.chomp.downcase
   if answer == 'hit'
     player_hand << deck.slice!(rand(0..deck.size))
+    calculate_sum(player_hand)
+    break if determine_bust(player_hand)
     puts "#{player_hand}"
   else
     puts "#{player_hand}"
   end
 end
+p calculate_sum(player_hand)
+end
+
+def dealer_turn(deck, dealer_hand)
+  answer = ''
+  sum = 0
+  until answer == 'stay'
+    calculate_sum(dealer_hand)
+    break if determine_bust(dealer_hand)
+  if dealer_hand < 17
+    dealer_hand << deck.slice!(rand(0..deck.size))
+  elsif dealer_hand >= 17
+    puts "Dealer stays #{sum}"
+    answer == 'stay'
+  end
+end
+calculate_sum(dealer_hand)
+end
+
+def handle_ace(value)
+  sum = 0
+  #values = []
+  #hand.each do |value|
+      if sum + 11 <= 21
+        value[1] = 11
+      elsif sum + 11 > 21
+        value[1] = 1
+      end
+    value[1]
 end
 
 def determine_bust(hand)
+  values = []
+  hand.each do |value|
+      values << value[1]
+      handle_ace(values)
+    calculate_sum(hand)
+    if calculate_sum(hand) > 21
+      return true
+    end
+end
+end
+
+def calculate_sum(hand)
   sum = 0
   values = []
   hand.each do |value|
-      if value[1] == [1, 11]
-        values << 11
-      else
-        values << value[1]
-      end
+    if value[1] == [1, 11]
+      handle_ace(value[1])
+      values << value[1]
+  else
+      values << value[1]
     end
     sum = values.reduce(:+)
+    binding.pry
+end
+sum
+end
+
+def determine_winner(player_total, dealer_total)
+if player_total > dealer_total
+  puts "Player wins: #{player_total}"
+else
+  puts "Dealer wins: #{dealer_total}"
+end
 end
 
 
 start_game(deck, player_hand, dealer_hand)
-player_turn(deck, player_hand)
+p player_hand
+p dealer_hand
+p player_turn(deck, player_hand)
+p dealer_turn(deck, dealer_hand)
+determine_winner(player_turn(deck, player_hand), dealer_turn(deck, dealer_hand))
