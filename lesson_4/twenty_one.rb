@@ -26,4 +26,22 @@ def start_game(deck, player_hand, dealer_hand)
   2.times { dealer_hand << deck.slice!(rand(0..deck.size)) }
 end
 
+#3. Player turn: hit or stay
+  # - repeat until bust or "stay"
+
+def player_turn(deck, player_hand)
+  answer = ''
+  until answer == 'stay'
+  puts "Hit or Stay"
+  answer = gets.chomp.downcase
+  if answer == 'hit'
+    player_hand << deck.slice!(rand(0..deck.size))
+    puts "#{player_hand}"
+  else
+    puts "#{player_hand}"
+  end
+end
+end
+
 start_game(deck, player_hand, dealer_hand)
+player_turn(deck, player_hand)
