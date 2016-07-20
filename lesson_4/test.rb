@@ -33,59 +33,23 @@ require 'pry'
 deck = []
 value = 0
 suits = ['Hearts', 'Spades', 'Diamonds', 'Clubs']
+sum = 0
+dealer_stay_hand = 0
+player_stay_hand = 0
 
 deck =
-[["Hearts", 2],
-["Hearts", 3],
-["Hearts", 4],
-["Hearts", 5],
-["Hearts", 6],
-["Hearts", 7],
-["Hearts", 8],
-["Hearts", 9],
-["Hearts", 10],
-["Jack of Hearts", 10],
-["Queen of Hearts", 10],
-["King of Hearts", 10],
-["Ace of Hearts", [1, 11]],
-["Spades", 2],
-["Spades", 3],
-["Spades", 4],
-["Spades", 5],
-["Spades", 6],
-["Spades", 7],
-["Spades", 8],
-["Spades", 9],
-["Spades", 10],
-["Jack of Spades", 10],
-["Queen of Spades", 10],
-["King of Spades", 10],
-["Diamonds", 2],
-["Diamonds", 3],
-["Diamonds", 4],
-["Diamonds", 5],
-["Diamonds", 6],
-["Diamonds", 7],
-["Diamonds", 8],
-["Diamonds", 9],
-["Diamonds", 10],
-["Jack of Diamonds", 10],
-["Queen of Diamonds", 10],
-["King of Diamonds", 10],
-["Ace of Diamonds", [1, 11]],
-["Clubs", 2],
-["Clubs", 3],
-["Clubs", 4],
-["Clubs", 5],
-["Clubs", 6],
-["Clubs", 7],
-["Clubs", 8],
-["Clubs", 10],
-["Jack of Clubs", 10],
-["Queen of Clubs", 10],
-["King of Clubs", 10],
-["Ace of Clubs", [1, 11]]
-]
+[["Hearts", 2], ["Hearts", 3],["Hearts", 4],["Hearts", 5],["Hearts", 6],
+["Hearts", 7], ["Hearts", 8], ["Hearts", 9], ["Hearts", 10], ["Jack of Hearts", 10],
+["Queen of Hearts", 10], ["King of Hearts", 10], ["Ace of Hearts", [1, 11]],
+["Spades", 2], ["Spades", 3], ["Spades", 4], ["Spades", 5], ["Spades", 6],
+["Spades", 7], ["Spades", 8], ["Spades", 9], ["Spades", 10], ["Jack of Spades", 10],
+["Queen of Spades", 10], ["King of Spades", 10], ["Diamonds", 2], ["Diamonds", 3],
+["Diamonds", 4], ["Diamonds", 5], ["Diamonds", 6], ["Diamonds", 7], ["Diamonds", 8],
+["Diamonds", 9], ["Diamonds", 10], ["Jack of Diamonds", 10], ["Queen of Diamonds", 10],
+["King of Diamonds", 10], ["Ace of Diamonds", [1, 11]], ["Clubs", 2], ["Clubs", 3],
+["Clubs", 4], ["Clubs", 5], ["Clubs", 6], ["Clubs", 7], ["Clubs", 8], ["Clubs", 10],
+["Jack of Clubs", 10], ["Queen of Clubs", 10], ["King of Clubs", 10],
+["Ace of Clubs", [1, 11]]]
 #sum = 0
 # def initialize_deck(deck, array, value)
 #   array.each do |suit|
@@ -118,12 +82,10 @@ deck =
 player_hand = []
 player_hand = []
 dealer_hand = []
-dealer_stay_hand = 0
-player_stay_hand = 0
 
-def deal(deck, player_hand, dealer_hand)
+def deal(deck, player_hand, player_stay_hand)
   values = []
-  # sum = 0
+  sum = 0
     loop do
       puts player_hand
       player_hand.each do |value|
@@ -136,7 +98,6 @@ def deal(deck, player_hand, dealer_hand)
         sum = values.reduce(:+)
   puts "Hit or Stay"
   answer = gets.chomp.downcase
-  #break if answer == 'stay'
     if answer == 'hit'
       player_hand << deck.slice!(rand(0..deck.size))
     else
@@ -145,16 +106,14 @@ def deal(deck, player_hand, dealer_hand)
       break
     end
 end
-# player_stay_hand = sum
+  player_stay_hand = sum
+  player_stay_hand
 end
 
-def dealer(deck, player_hand, dealer_hand)
+def dealer(deck, dealer_hand, dealer_stay_hand, player_stay_hand)
   values = []
-  # sum = 0
+  sum = 0
     loop do
-      if dealer_hand.size < 2
-        p dealer_hand + "too small"
-      end
       dealer_hand.each do |value|
           if value[1] == [1, 11]
             values << 11
@@ -170,10 +129,15 @@ def dealer(deck, player_hand, dealer_hand)
       else
         puts "Dealer stays."
         dealer_stay_hand = sum
+        if values.include?(11) && sum > 21
+          sum -= 11
+        end
         break
       end
   end
-  # dealer_stay_hand = sum
+  dealer_stay_hand = sum
+  dealer_stay_hand
+  # determine_winner(player_stay_hand, dealer_stay_hand)
 end
 
 def start_game(deck, player_hand, dealer_hand)
@@ -182,18 +146,19 @@ def start_game(deck, player_hand, dealer_hand)
 end
 
 def determine_winner(player_stay_hand, dealer_stay_hand)
+  binding.pry
   if player_stay_hand == 21
-    Puts "Player wins!"
+    Puts "Player wins! #{player_stay_hand} Dealer #{dealer_stay_hand}"
   elsif player_stay_hand > 21
-    puts "Computer wins!"
+    puts "Computer wins! #{player_stay_hand} Dealer #{dealer_stay_hand}"
   elsif dealer_stay_hand == 21
-    puts "Computer wins!"
+    puts "Computer wins! #{player_stay_hand} Dealer #{dealer_stay_hand}"
   elsif dealer_stay_hand > 21
-    puts "Player wins"
+    puts "Player wins! #{player_stay_hand} Dealer #{dealer_stay_hand}"
   elsif dealer_stay_hand > player_stay_hand
-    puts "Computer wins!"
+    puts "Computer wins! Player: #{player_stay_hand} Dealer #{dealer_stay_hand}"
   else
-    puts "player wins!"
+    puts "Player wins! Dealer: #{player_stay_hand} #{dealer_stay_hand}"
 end
 end
 
@@ -202,9 +167,9 @@ start_game(deck, player_hand, dealer_hand)
 #p dealer_hand
 #p deck
 #p dealer_hand[0]
-#deal(deck, player_hand, dealer_hand)
-dealer(deck, player_hand, dealer_hand)
-#determine_winner(player_stay_hand, dealer_stay_hand)
+#deal(deck, player_hand, player_stay_hand)
+#dealer(deck, player_hand, dealer_stay_hand, player_stay_hand)
+determine_winner(deal(deck, player_hand, player_stay_hand), dealer(deck, player_hand, dealer_stay_hand, player_stay_hand))
 #p dealer_hand
 #p dealer_hand.count
 #p player_hand.count
