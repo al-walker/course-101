@@ -31,7 +31,7 @@ end
 
 def player_turn(deck, player_hand)
   answer = ''
-  until answer == 'stay'
+  until answer == 'stay' || determine_bust(player_hand) > 21
   puts "Hit or Stay"
   answer = gets.chomp.downcase
   if answer == 'hit'
@@ -42,6 +42,20 @@ def player_turn(deck, player_hand)
   end
 end
 end
+
+def determine_bust(hand)
+  sum = 0
+  values = []
+  hand.each do |value|
+      if value[1] == [1, 11]
+        values << 11
+      else
+        values << value[1]
+      end
+    end
+    sum = values.reduce(:+)
+end
+
 
 start_game(deck, player_hand, dealer_hand)
 player_turn(deck, player_hand)
