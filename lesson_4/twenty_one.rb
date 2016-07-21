@@ -19,8 +19,8 @@ cards =
 # Deal cards to player and dealer
 
 def start_game(cards, player_hand, dealer_hand)
-  2.times { player_hand << cards.slice!(rand(0..cards.size)) }
-  2.times { dealer_hand << cards.slice!(rand(0..cards.size)) }
+  2.times { player_hand << cards.slice!(rand(0..cards.size - 1)) }
+  2.times { dealer_hand << cards.slice!(rand(0..cards.size - 1)) }
 end
 
 def total(hand)
@@ -58,18 +58,20 @@ def player_turn(cards, player_hand)
   loop do
     puts "hit or stay?"
     answer = gets.chomp
-    player_hand << cards.slice!(rand(0..cards.size))
+    if answer == 'hit'
+    player_hand << cards.slice!(rand(0..cards.size - 1))
+    puts "#{player_hand}"
+  end
     break if answer == 'stay' || busted?(player_hand)
   end
 
   if busted?(player_hand)
-    #puts "Play again? y or n"
-    #play_again = gets.chomp.downcase
-    #break if play_again == 'n'
+    puts "Player Busted #{total(player_hand)}"
     puts "Game over"
     # end game or ask to play again
   else
     puts "You chose to stay!"
+    puts "#{total(player_hand)}"
   end
 end
 # continue to dealer turn
@@ -82,7 +84,8 @@ def dealer_turn(cards, dealer_hand)
       answer = 'stay'
     else
       answer = 'hit'
-      dealer_hand << cards.slice!(rand(0..cards.size))
+      dealer_hand << cards.slice!(rand(0..cards.size - 1))
+      puts "#{dealer_hand}"
     end
     break if answer == 'stay' || busted?(dealer_hand)
   end
@@ -90,7 +93,6 @@ def dealer_turn(cards, dealer_hand)
   if busted?(dealer_hand)
     puts "Play again? y or n"
     play_again = gets.chomp.downcase
-    # break if play_again == 'n'
 
     # end game or ask to play again
   else
@@ -99,10 +101,10 @@ def dealer_turn(cards, dealer_hand)
 end
 
 loop do
-  puts "play again?"
-  play_again = gets.chomp
-  break if play_again == 'n'
   start_game(cards, player_hand, dealer_hand)
   player_turn(cards, player_hand)
   dealer_turn(cards, dealer_hand)
+  puts "play again?"
+  play_again = gets.chomp
+  break if play_again == 'n'
 end
