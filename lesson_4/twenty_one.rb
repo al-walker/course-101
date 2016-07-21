@@ -1,120 +1,51 @@
-require 'pry'
-
-player_hand = []
-dealer_hand = []
-
-#1. Initialize deck
-
 deck =
-[["Hearts", 2], ["Hearts", 3],["Hearts", 4],["Hearts", 5],["Hearts", 6],
-["Hearts", 7], ["Hearts", 8], ["Hearts", 9], ["Hearts", 10], ["Jack of Hearts", 10],
-["Queen of Hearts", 10], ["King of Hearts", 10], ["Ace of Hearts", [1, 11]],
-["Spades", 2], ["Spades", 3], ["Spades", 4], ["Spades", 5], ["Spades", 6],
-["Spades", 7], ["Spades", 8], ["Spades", 9], ["Spades", 10], ["Jack of Spades", 10],
-["Queen of Spades", 10], ["King of Spades", 10], ["Diamonds", 2], ["Diamonds", 3],
-["Diamonds", 4], ["Diamonds", 5], ["Diamonds", 6], ["Diamonds", 7], ["Diamonds", 8],
-["Diamonds", 9], ["Diamonds", 10], ["Jack of Diamonds", 10], ["Queen of Diamonds", 10],
-["King of Diamonds", 10], ["Ace of Diamonds", [1, 11]], ["Clubs", 2], ["Clubs", 3],
-["Clubs", 4], ["Clubs", 5], ["Clubs", 6], ["Clubs", 7], ["Clubs", 8], ["Clubs", 10],
-["Jack of Clubs", 10], ["Queen of Clubs", 10], ["King of Clubs", 10],
-["Ace of Clubs", [1, 11]]]
+[['H', '2'], ['H', '3'],['H', '4'],['H', '5'],['H', '6'],
+['H', '7'], ['H', '8'], ['H', '9'], ['H', '10'], ['H', 'J'],
+['H', 'Q'], ['H', 'K'], ['H', 'A'],
+['S', '2'], ['S', '3'], ['S', '4'], ['S', '5'], ['S', '6'],
+['S', '7'], ['S', '8'], ['S', '9'], ['S', '10'], ['S', 'J'],
+['S', 'Q'], ['S', 'K'], ['S', 'A']['D', '2'], ['D', '3'],
+['D', '4'], ['D', '5'], ['D', '6'], ['D', '7'], ['D', '8'],
+['D', '9'], ['D', '10'], ['D', 'J'], ['D', 'Q'],
+['D', 'K'], ['D', 'A'], ['C', '2'], ['C', '3'],
+['C', '4'], ['C', '5'], ['C', '6'], ['C', '7'], ['C', '8'], ['C', '10'],
+['C', 'J'], ['C', 'Q'], ['C', 'K'],
+['C', 'A']]
 
-# 2. Deal cards to player and dealer
+def total(cards)
+  # cards = [['H', '3'], ['H', '2']
+  values = cards.map { |card| card[1] }
 
-def start_game(deck, player_hand, dealer_hand)
-  2.times { player_hand << deck.slice!(rand(0..deck.size)) }
-  2.times { dealer_hand << deck.slice!(rand(0..deck.size)) }
-end
-
-#3. Player turn: hit or stay
-  # - repeat until bust or "stay"
-
-def player_turn(deck, player_hand)
   sum = 0
-  answer = ''
-  until answer == 'stay'
-  puts "Hit or Stay"
-  answer = gets.chomp.downcase
-  if answer == 'hit'
-    player_hand << deck.slice!(rand(0..deck.size))
-    calculate_sum(player_hand)
-    break if determine_bust(player_hand)
-    puts "#{player_hand}"
-  else
-    puts "#{player_hand}"
-  end
-end
-p calculate_sum(player_hand)
-end
-
-def dealer_turn(deck, dealer_hand)
-  answer = ''
-  sum = 0
-  until answer == 'stay'
-    calculate_sum(dealer_hand)
-    break if determine_bust(dealer_hand)
-  if dealer_hand < 17
-    dealer_hand << deck.slice!(rand(0..deck.size))
-  elsif dealer_hand >= 17
-    puts "Dealer stays #{sum}"
-    answer == 'stay'
-  end
-end
-calculate_sum(dealer_hand)
-end
-
-def handle_ace(value)
-  sum = 0
-  #values = []
-  #hand.each do |value|
-      if sum + 11 <= 21
-        value[1] = 11
-      elsif sum + 11 > 21
-        value[1] = 1
-      end
-    value[1]
-end
-
-def determine_bust(hand)
-  values = []
-  hand.each do |value|
-      values << value[1]
-      handle_ace(values)
-    calculate_sum(hand)
-    if calculate_sum(hand) > 21
-      return true
+  values.each do |value|
+    if value == "A"
+      sum += 11
+    elsif value.to_i == 0 # J, Q, K
+      sum += 10
+    else
+      sum += value.to_i
     end
-end
+  end
+
+  # correct for Aces
+  values.select { |value| value == "A"}.count.times do
+    sum -= 10 if sum > 21
+  end
+
+  sum
 end
 
-def calculate_sum(hand)
-  sum = 0
-  values = []
-  hand.each do |value|
-    if value[1] == [1, 11]
-      handle_ace(value[1])
-      values << value[1]
-  else
-      values << value[1]
-    end
-    sum = values.reduce(:+)
-    binding.pry
-end
-sum
+answer = nil
+loop do
+  puts "hit or stay?"
+  answer = gets.chomp
+  break if answer == 'stay' || busted?
 end
 
-def determine_winner(player_total, dealer_total)
-if player_total > dealer_total
-  puts "Player wins: #{player_total}"
+if busted?
+  # end game or ask to play again
 else
-  puts "Dealer wins: #{dealer_total}"
-end
+  puts "You chose to stay!"
 end
 
-
-start_game(deck, player_hand, dealer_hand)
-p player_hand
-p dealer_hand
-p player_turn(deck, player_hand)
-p dealer_turn(deck, dealer_hand)
-determine_winner(player_turn(deck, player_hand), dealer_turn(deck, dealer_hand))
+# continue to dealer turn
