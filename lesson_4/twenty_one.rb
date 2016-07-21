@@ -77,13 +77,15 @@ end
 # continue to dealer turn
 
 def dealer_turn(cards, dealer_hand)
-  answer = nil
+  answer = ''
+  p dealer_hand
   loop do
-    puts "hit or stay?"
     if total(dealer_hand) >= 17
+      puts 'dealer stays'
+      puts "Dealer total: #{total(dealer_hand)}"
       answer = 'stay'
     else
-      answer = 'hit'
+      puts 'dealer hits'
       dealer_hand << cards.slice!(rand(0..cards.size - 1))
       puts "#{dealer_hand}"
     end
