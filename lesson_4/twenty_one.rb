@@ -102,10 +102,22 @@ def dealer_turn(cards, dealer_hand)
   end
 end
 
+# If dealer bust, player wins.
+# Compare cards and declare winner.
+
+def compare_hands(player_hand, dealer_hand)
+  if total(player_hand) > total(dealer_hand)
+    puts "Player wins #{total(player_hand)}"
+    else
+    puts "Dealer wins #{total(dealer_hand)}"
+  end
+end
+
 loop do
   start_game(cards, player_hand, dealer_hand)
   player_turn(cards, player_hand)
   dealer_turn(cards, dealer_hand)
+  compare_hands(player_hand, dealer_hand)
   puts "play again?"
   play_again = gets.chomp
   break if play_again == 'n'
