@@ -1,3 +1,9 @@
+require 'pry'
+
+player_hand = []
+dealer_hand = []
+
+# Initialize Deck
 deck =
 [['H', '2'], ['H', '3'],['H', '4'],['H', '5'],['H', '6'],
 ['H', '7'], ['H', '8'], ['H', '9'], ['H', '10'], ['H', 'J'],
@@ -11,6 +17,13 @@ deck =
 ['C', '4'], ['C', '5'], ['C', '6'], ['C', '7'], ['C', '8'], ['C', '10'],
 ['C', 'J'], ['C', 'Q'], ['C', 'K'],
 ['C', 'A']]
+
+# Deal cards to player and dealer
+
+def start_game(deck, player_hand, dealer_hand)
+  2.times { player_hand << deck.slice!(rand(0..deck.size)) }
+  2.times { dealer_hand << deck.slice!(rand(0..deck.size)) }
+end
 
 def total(cards)
   # cards = [['H', '3'], ['H', '2']
