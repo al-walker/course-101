@@ -61,26 +61,26 @@ def player_turn(cards, player_hand)
     if answer == 'hit'
     player_hand << cards.slice!(rand(0..cards.size - 1))
     puts "#{player_hand}"
+  else
+    puts 'player stays'
   end
     break if answer == 'stay' || busted?(player_hand)
   end
 
   if busted?(player_hand)
     puts "Player Busted #{total(player_hand)}"
-    puts "Game over"
     # end game or ask to play again
   else
-    puts "You chose to stay!"
-    puts "#{total(player_hand)}"
+    puts "Player total: #{total(player_hand)}"
   end
 end
 # continue to dealer turn
 
-def dealer_turn(cards, dealer_hand)
+def dealer_turn(cards, dealer_hand, player_hand)
   answer = ''
   p dealer_hand
   loop do
-    if total(dealer_hand) >= 17
+    if total(dealer_hand) >= 17 || busted?(player_hand)
       puts 'dealer stays'
       puts "Dealer total: #{total(dealer_hand)}"
       answer = 'stay'
@@ -93,12 +93,10 @@ def dealer_turn(cards, dealer_hand)
   end
 
   if busted?(dealer_hand)
-    puts "Play again? y or n"
-    play_again = gets.chomp.downcase
-
+    puts "Dealer Busted #{total(dealer_hand)}"
     # end game or ask to play again
   else
-    puts "You chose to stay!"
+    puts "Dealer total: #{total(dealer_hand)}"
   end
 end
 
@@ -106,19 +104,26 @@ end
 # Compare cards and declare winner.
 
 def compare_hands(player_hand, dealer_hand)
-  if total(player_hand) > total(dealer_hand)
+  if busted?(player_hand)
+    puts "Dealer wins #{total(dealer_hand)} - Player Busted. #{total(player_hand)}"
+  elsif busted?(dealer_hand)
+    puts "Player wins #{total(player_hand)} - Dealer Busted. #{total(dealer_hand)}"
+  elsif total(player_hand) > total(dealer_hand) && !busted?(player_hand)
     puts "Player wins #{total(player_hand)}"
-    else
+  elsif total(dealer_hand) > total(player_hand) && !busted?(dealer_hand)
     puts "Dealer wins #{total(dealer_hand)}"
+  else  
   end
 end
 
 loop do
   start_game(cards, player_hand, dealer_hand)
   player_turn(cards, player_hand)
-  dealer_turn(cards, dealer_hand)
+  dealer_turn(cards, dealer_hand, player_hand)
   compare_hands(player_hand, dealer_hand)
   puts "play again?"
   play_again = gets.chomp
   break if play_again == 'n'
+  player_hand.clear
+  dealer_hand.clear
 end
