@@ -2,6 +2,8 @@ require 'pry'
 
 player_hand = []
 dealer_hand = []
+player_total = 0
+dealer_total = 0
 
 # Initialize Deck
 cards =
@@ -49,10 +51,16 @@ def busted?(hand)
   total(hand) > 21
 end
 
+def player_win?(p_total, d_total)
+  if (p_total > d_total && p_total < 22) || d_total > 21
+    true
+  end
+end
+
 # Player turn: hit or stay
 # - repeat until bust or "stay"
-def player_turn(cards, player_hand)
-  p player_hand.to_s
+def player_turn(cards, player_hand, player_total)
+  puts "#{player_hand}"
   answer = nil
 
   loop do
@@ -60,7 +68,7 @@ def player_turn(cards, player_hand)
     answer = gets.chomp
     if answer == 'hit'
       player_hand << cards.slice!(rand(0..cards.size - 1))
-      p player_hand.to_s
+      puts "#{player_hand}"
     else
       puts 'player stays'
     end
@@ -73,16 +81,17 @@ def player_turn(cards, player_hand)
   else
     puts "Player total: #{total(player_hand)}"
   end
+
 end
 # continue to dealer turn
 
-def dealer_turn(cards, dealer_hand, player_hand)
+def dealer_turn(cards, dealer_hand, player_hand, dealer_total, player_total)
   answer = ''
-  p dealer_hand
+  puts "#{dealer_hand}"
   loop do
     if total(dealer_hand) >= 17 || busted?(player_hand)
       puts 'dealer stays'
-      puts "Dealer total: #{total(dealer_hand)}"
+      #puts "Dealer total: #{total(dealer_hand)}"
       answer = 'stay'
     else
       puts 'dealer hits'
@@ -94,33 +103,32 @@ def dealer_turn(cards, dealer_hand, player_hand)
 
   if busted?(dealer_hand)
     puts "Dealer Busted #{total(dealer_hand)}"
+    dealer_total = 0
     # end game or ask to play again
   else
     puts "Dealer total: #{total(dealer_hand)}"
   end
+
 end
 
 # If dealer bust, player wins.
 # Compare cards and declare winner.
 
-def compare_hands(player_hand, dealer_hand)
-  if busted?(player_hand)
-    puts "Dealer wins #{total(dealer_hand)} - Player Busted. #{total(player_hand)}"
-  elsif busted?(dealer_hand)
-    puts "Player wins #{total(player_hand)} - Dealer Busted. #{total(dealer_hand)}"
-  elsif total(player_hand) > total(dealer_hand) && !busted?(player_hand)
-    puts "Player wins #{total(player_hand)}"
-  elsif total(dealer_hand) > total(player_hand) && !busted?(dealer_hand)
-    puts "Dealer wins #{total(dealer_hand)}"
+def display_winner(p_total, d_total)
+  if player_win?(p_total, d_total)
+    puts "Player wins: #{p_total}"
   else
+    puts "Dealer wins: #{d_total}"
   end
 end
 
 loop do
   start_game(cards, player_hand, dealer_hand)
-  player_turn(cards, player_hand)
-  dealer_turn(cards, dealer_hand, player_hand)
-  compare_hands(player_hand, dealer_hand)
+  player_turn(cards, player_hand, player_total)
+  dealer_turn(cards, dealer_hand, player_hand, dealer_total, player_total)
+  player_total = total(player_hand)
+  dealer_total = total(dealer_hand)
+  display_winner(player_total, dealer_total)
   puts "play again?"
   play_again = gets.chomp
   break if play_again == 'n'
