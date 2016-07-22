@@ -85,7 +85,7 @@ def player_turn(cards, player_hand, player_total)
 end
 # continue to dealer turn
 
-def dealer_turn(cards, dealer_hand, player_hand, dealer_total, player_total)
+def dealer_turn(cards, dealer_hand, player_hand, dealer_total)
   answer = ''
   puts "#{dealer_hand}"
   loop do
@@ -124,7 +124,7 @@ def play(cards, player_hand, dealer_hand, player_total, dealer_total)
   loop do
     start_game(cards, player_hand, dealer_hand)
     player_turn(cards, player_hand, player_total)
-    dealer_turn(cards, dealer_hand, player_hand, dealer_total, player_total)
+    dealer_turn(cards, dealer_hand, player_hand, dealer_total)
     player_total = total(player_hand)
     dealer_total = total(dealer_hand)
     display_winner(player_total, dealer_total)
