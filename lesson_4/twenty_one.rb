@@ -24,7 +24,6 @@ def start_game(cards, player_hand, dealer_hand)
 end
 
 def total(hand)
-  # cards = [['H', '3'], ['H', '2']
   values = hand.map { |card| card[1] }
 
   sum = 0
@@ -55,6 +54,7 @@ end
 def player_turn(cards, player_hand)
   puts "#{player_hand}"
   answer = nil
+
   loop do
     puts "hit or stay?"
     answer = gets.chomp
@@ -112,7 +112,7 @@ def compare_hands(player_hand, dealer_hand)
     puts "Player wins #{total(player_hand)}"
   elsif total(dealer_hand) > total(player_hand) && !busted?(dealer_hand)
     puts "Dealer wins #{total(dealer_hand)}"
-  else  
+  else
   end
 end
 
@@ -124,6 +124,6 @@ loop do
   puts "play again?"
   play_again = gets.chomp
   break if play_again == 'n'
-  player_hand.clear
-  dealer_hand.clear
+  player_hand.each { |c| cards << c }.clear
+  dealer_hand.each { |c| cards << c }.clear
 end
