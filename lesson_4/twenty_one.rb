@@ -91,7 +91,6 @@ def dealer_turn(cards, dealer_hand, player_hand, dealer_total, player_total)
   loop do
     if total(dealer_hand) >= 17 || busted?(player_hand)
       puts 'dealer stays'
-      #puts "Dealer total: #{total(dealer_hand)}"
       answer = 'stay'
     else
       puts 'dealer hits'
@@ -104,7 +103,6 @@ def dealer_turn(cards, dealer_hand, player_hand, dealer_total, player_total)
   if busted?(dealer_hand)
     puts "Dealer Busted #{total(dealer_hand)}"
     dealer_total = 0
-    # end game or ask to play again
   else
     puts "Dealer total: #{total(dealer_hand)}"
   end
@@ -122,16 +120,20 @@ def display_winner(p_total, d_total)
   end
 end
 
-loop do
-  start_game(cards, player_hand, dealer_hand)
-  player_turn(cards, player_hand, player_total)
-  dealer_turn(cards, dealer_hand, player_hand, dealer_total, player_total)
-  player_total = total(player_hand)
-  dealer_total = total(dealer_hand)
-  display_winner(player_total, dealer_total)
-  puts "play again?"
-  play_again = gets.chomp
-  break if play_again == 'n'
-  player_hand.each { |c| cards << c }.clear
-  dealer_hand.each { |c| cards << c }.clear
+def play(cards, player_hand, dealer_hand, player_total, dealer_total)
+  loop do
+    start_game(cards, player_hand, dealer_hand)
+    player_turn(cards, player_hand, player_total)
+    dealer_turn(cards, dealer_hand, player_hand, dealer_total, player_total)
+    player_total = total(player_hand)
+    dealer_total = total(dealer_hand)
+    display_winner(player_total, dealer_total)
+    puts "play again?"
+    play_again = gets.chomp
+    break if play_again == 'n'
+    player_hand.each { |c| cards << c }.clear
+    dealer_hand.each { |c| cards << c }.clear
+  end
 end
+
+play(cards, player_hand, dealer_hand, player_total, dealer_total)
