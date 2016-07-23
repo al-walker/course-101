@@ -23,6 +23,8 @@ cards =
 def start_game(cards, player_hand, dealer_hand)
   2.times { player_hand << cards.slice!(rand(0..cards.size - 1)) }
   2.times { dealer_hand << cards.slice!(rand(0..cards.size - 1)) }
+  puts "Dealer has: #{dealer_hand[0]} and an unknown card."
+  puts "You have: #{player_hand}"
 end
 
 def total(hand)
