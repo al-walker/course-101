@@ -7,16 +7,16 @@ dealer_total = 0
 
 # Initialize Deck
 cards =
- [['H', '2'], ['H', '3'],['H', '4'], ['H', '5'], ['H', '6'],
-  ['H', '7'], ['H', '8'], ['H', '9'], ['H', '10'], ['H', 'J'],
-  ['H', 'Q'], ['H', 'K'], ['H', 'A'], ['S', '2'], ['S', '3'],
-  ['S', '4'], ['S', '5'], ['S', '6'], ['S', '7'], ['S', '8'], ['S', '9'],
-  ['S', '10'], ['S', 'J'], ['S', 'Q'], ['S', 'K'], ['S', 'A'],
-  ['D', '2'], ['D', '3'], ['D', '4'], ['D', '5'], ['D', '6'],
-  ['D', '7'], ['D', '8'], ['D', '9'], ['D', '10'], ['D', 'J'], ['D', 'Q'],
-  ['D', 'K'], ['D', 'A'], ['C', '2'], ['C', '3'], ['C', '4'],
-  ['C', '5'], ['C', '6'], ['C', '7'], ['C', '8'], ['C', '10'],
-  ['C', 'J'], ['C', 'Q'], ['C', 'K'], ['C', 'A']]
+  [['H', '2'], ['H', '3'], ['H', '4'], ['H', '5'], ['H', '6'],
+   ['H', '7'], ['H', '8'], ['H', '9'], ['H', '10'], ['H', 'J'],
+   ['H', 'Q'], ['H', 'K'], ['H', 'A'], ['S', '2'], ['S', '3'],
+   ['S', '4'], ['S', '5'], ['S', '6'], ['S', '7'], ['S', '8'], ['S', '9'],
+   ['S', '10'], ['S', 'J'], ['S', 'Q'], ['S', 'K'], ['S', 'A'],
+   ['D', '2'], ['D', '3'], ['D', '4'], ['D', '5'], ['D', '6'],
+   ['D', '7'], ['D', '8'], ['D', '9'], ['D', '10'], ['D', 'J'], ['D', 'Q'],
+   ['D', 'K'], ['D', 'A'], ['C', '2'], ['C', '3'], ['C', '4'],
+   ['C', '5'], ['C', '6'], ['C', '7'], ['C', '8'], ['C', '10'],
+   ['C', 'J'], ['C', 'Q'], ['C', 'K'], ['C', 'A']]
 
 # Deal cards to player and dealer
 
@@ -83,11 +83,10 @@ def player_turn(cards, player_hand, player_total)
   else
     puts "Player total: #{total(player_hand)}"
   end
-
 end
 # continue to dealer turn
 
-def dealer_turn(cards, dealer_hand, player_hand, dealer_total)
+def dealer_turn(cards, dealer_hand, player_hand)
   answer = ''
   puts "#{dealer_hand}"
   loop do
@@ -104,11 +103,9 @@ def dealer_turn(cards, dealer_hand, player_hand, dealer_total)
 
   if busted?(dealer_hand)
     puts "Dealer Busted #{total(dealer_hand)}"
-    dealer_total = 0
   else
     puts "Dealer total: #{total(dealer_hand)}"
   end
-
 end
 
 # If dealer bust, player wins.
@@ -126,7 +123,7 @@ def play(cards, player_hand, dealer_hand, player_total, dealer_total)
   loop do
     start_game(cards, player_hand, dealer_hand)
     player_turn(cards, player_hand, player_total)
-    dealer_turn(cards, dealer_hand, player_hand, dealer_total)
+    dealer_turn(cards, dealer_hand, player_hand)
     player_total = total(player_hand)
     dealer_total = total(dealer_hand)
     display_winner(player_total, dealer_total)
