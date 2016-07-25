@@ -81,19 +81,20 @@ end
 loop do
   prompt "Welcome to Twenty-One!"
 
-  #Inititalize the vars
+  # Inititalize the vars
   deck = initialize_deck
   player_cards = []
   dealer_cards = []
 
-  #initial deal
+  # initial deal
   2.times do
     player_cards << deck.pop
     dealer_cards << deck.pop
   end
 
   prompt "Dealer has #{dealer_cards[0]} and ?"
-  prompt "You have: #{player_cards[0]} and #{player_cards[1]}, for a total of #{total(player_cards)}."
+  prompt "You have: #{player_cards[0]} and #{player_cards[1]},
+  for a total of #{total(player_cards)}."
 
   # player turn
   loop do
@@ -122,7 +123,7 @@ loop do
     prompt "You stayed at #{total(player_cards)}"
   end
 
-  #dealer_turn
+  # dealer_turn
   prompt "Dealer turn..."
 
   loop do
@@ -140,15 +141,15 @@ loop do
   else
     prompt "Dealer stays at #{total(dealer_cards)}"
   end
-    # both player and dealer stays - compare cards
-    puts "============"
-    prompt "Dealer has #{dealer_cards}, for a total of: #{total(dealer_cards)}"
-    prompt "Player has #{player_cards}, for a total of: #{total(player_cards)}"
-    puts "============"
+  # both player and dealer stays - compare cards
+  puts "============"
+  prompt "Dealer has #{dealer_cards}, for a total of: #{total(dealer_cards)}"
+  prompt "Player has #{player_cards}, for a total of: #{total(player_cards)}"
+  puts "============"
 
-    display_result(dealer_cards, player_cards)
+  display_result(dealer_cards, player_cards)
 
-    break unless play_again?
+  break unless play_again?
 end
 
 prompt "Thank you for playing Twenty-One! Good bye!"
