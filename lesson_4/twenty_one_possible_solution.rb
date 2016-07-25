@@ -10,3 +10,28 @@ end
 def initialize_deck
   SUITS.product(VALUES).shuffle
 end
+
+def total(cards)
+  values = cards.map { |card| card[1] }
+
+  sum = 0
+  values.each do |value|
+    if value == "A"
+      sum += 11
+    elsif value.to_i == 0
+      sum += 10
+    else
+      sum += value.to_i
+    end
+  end
+
+  values.select { |value| value == "A" }.count.times do
+    sum -= 10 if sum > 21
+  end
+
+  sum
+end
+
+def busted?(cards)
+  total(cards) > 21
+end
