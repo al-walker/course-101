@@ -35,3 +35,56 @@ end
 def busted?(cards)
   total(cards) > 21
 end
+
+def detect_result(dealer_cards, player_cards)
+  player_total = total(player_cards)
+  dealer_total = total(dealer_cards)
+
+  if player_total > 21
+    :player_busted
+  elsif dealer_total > 21
+    :dealer_busted
+  elsif dealer_total < player_total
+    :player
+  elsif dealer_total > player_total
+    :dealer_total
+  else
+    :tie
+  end
+end
+
+def display_result(dealer_cards, player_cards)
+  result = detect_result(dealer_cards, player_cards)
+
+  case result
+
+  when :player_busted
+    prompt "You busted! Dealer wins!"
+  when :dealer_busted
+    prompt "Dealer busted! You win!"
+  when :player
+    prompt "You win!"
+  when :dealer_hand
+    prompt "Dealer wins!"
+  when :tie
+    prompt "It's a tie!"
+  end
+end
+
+def play_again?
+  puts "------------"
+  prompt "Doyou want to play again? (y or n)"
+  answer = gets.chomp
+  answer.downcase.start_with('y')
+end
+
+loop do
+  prompt "Welcome to Twenty-One!"
+
+  #Inititalize the vars
+  deck = initialize_deck
+  player_cards = []
+  dealer_cards = []
+
+  #initial deal
+end
