@@ -2,6 +2,8 @@ require 'pry'
 
 SUITS = ['H', 'D', 'S', 'C']
 VALUES = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A']
+HAND_TOTAL = 21
+DEALER_STAY = 17
 player_score = 0
 dealer_score = 0
 
@@ -28,23 +30,23 @@ def total(cards)
   end
 
   values.select { |value| value == "A" }.count.times do
-    sum -= 10 if sum > 21
+    sum -= 10 if sum > HAND_TOTAL
   end
 
   sum
 end
 
 def busted?(cards)
-  total(cards) > 21
+  total(cards) > HAND_TOTAL
 end
 
 def detect_result(d_cards, p_cards)
   player_total = total(p_cards)
   dealer_total = total(d_cards)
 
-  if player_total > 21
+  if player_total > HAND_TOTAL
     :player_busted
-  elsif dealer_total > 21
+  elsif dealer_total > HAND_TOTAL
     :dealer_busted
   elsif dealer_total < player_total
     :player
@@ -165,7 +167,7 @@ loop do
   prompt "Dealer turn..."
   dealer_total = total(dealer_cards)
   loop do
-    break if busted?(dealer_cards) || dealer_total >= 17
+    break if busted?(dealer_cards) || dealer_total >= DEALER_STAY
 
     prompt "Dealer hits!"
     dealer_cards << deck.pop
