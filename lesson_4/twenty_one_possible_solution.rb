@@ -148,6 +148,14 @@ loop do
     end
     puts "Player score: #{player_score} Dealer score: #{dealer_score}"
 
+    if player_score == 5
+      puts "5 wins - Player wins game."
+      break
+    elsif dealer_score == 5
+      puts "5 wins - Dealer wins game."
+      break
+    end
+
     play_again? ? next : break
   else
     prompt "You stayed at #{player_total}"
@@ -183,6 +191,14 @@ loop do
     end
     puts "Player score: #{player_score} Dealer score: #{dealer_score}"
 
+    if player_score == 5
+      puts "5 wins - Player wins game."
+      break
+    elsif dealer_score == 5
+      puts "5 wins - Dealer wins game."
+      break
+    end
+
     play_again? ? next : break
   else
     prompt "Dealer stays at #{dealer_total}"
@@ -205,6 +221,14 @@ loop do
     dealer_score += 1
   end
   puts "Player score: #{player_score} Dealer score: #{dealer_score}"
+
+  if player_score == 5
+    puts "5 wins - Player wins game."
+    break
+  elsif dealer_score == 5
+    puts "5 wins - Dealer wins game."
+    break
+  end
 
   break unless play_again?
 end
