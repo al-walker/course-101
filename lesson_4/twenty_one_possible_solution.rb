@@ -2,6 +2,8 @@ require 'pry'
 
 SUITS = ['H', 'D', 'S', 'C']
 VALUES = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A']
+player_score = 0
+dealer_score = 0
 
 def prompt(msg)
   puts "=> #{msg}"
@@ -36,9 +38,9 @@ def busted?(cards)
   total(cards) > 21
 end
 
-def detect_result(dealer_cards, player_cards)
-  player_total = total(player_cards)
-  dealer_total = total(dealer_cards)
+def detect_result(d_cards, p_cards)
+  player_total = total(p_cards)
+  dealer_total = total(d_cards)
 
   if player_total > 21
     :player_busted
@@ -78,26 +80,25 @@ def play_again?
   answer.downcase.start_with?('y')
 end
 
-def grand_output(dealer_cards, dealer_total, player_cards, player_total)
+def grand_output(dealer_cards, d_total, player_cards, p_total)
   puts "============"
-  prompt "Dealer has #{dealer_cards}, for a total of: #{dealer_total}"
-  prompt "Player has #{player_cards}, for a total of: #{player_total}"
+  prompt "Dealer has #{dealer_cards}, for a total of: #{d_total}"
+  prompt "Player has #{player_cards}, for a total of: #{p_total}"
   puts "============"
 
   display_result(dealer_cards, player_cards)
+  #update_score(dealer_cards, player_cards, dealer_score, player_score)
+
 end
 
 loop do
   prompt "Welcome to Twenty-One!"
-
+  # initial deal
   # Inititalize the vars
   deck = initialize_deck
   player_cards = []
   dealer_cards = []
-  dealer_total = 0
-  player_total = 0
 
-  # initial deal
   2.times do
     player_cards << deck.pop
     dealer_cards << deck.pop
@@ -130,7 +131,23 @@ loop do
   player_total = total(player_cards)
   if busted?(player_cards)
     # display_result(dealer_cards, player_cards)
-    grand_output(dealer_cards, dealer_total, player_cards, player_total)
+    result = detect_result(dealer_cards, player_cards)
+
+    grand_output(dealer_cards, dealer_total = 0, player_cards, player_total)
+
+    case result
+
+    when :player_busted
+      dealer_score += 1
+    when :dealer_busted
+      player_score += 1
+    when :player
+      player_score += 1
+    when :dealer
+      dealer_score += 1
+    end
+    puts "Player score: #{player_score} Dealer score: #{dealer_score}"
+
     play_again? ? next : break
   else
     prompt "You stayed at #{player_total}"
@@ -149,23 +166,46 @@ loop do
 
   dealer_total = total(dealer_cards)
   if busted?(dealer_cards)
-    # prompt "Dealer cards are now: #{dealer_cards}"
-    # display_result(dealer_cards, player_cards)
+
     grand_output(dealer_cards, dealer_total, player_cards, player_total)
+
+    result = detect_result(dealer_cards, player_cards)
+    case result
+
+    when :player_busted
+      dealer_score += 1
+    when :dealer_busted
+      player_score += 1
+    when :player
+      player_score += 1
+    when :dealer
+      dealer_score += 1
+    end
+    puts "Player score: #{player_score} Dealer score: #{dealer_score}"
+
     play_again? ? next : break
   else
     prompt "Dealer stays at #{dealer_total}"
 
   end
   # both player and dealer stays - compare cards
+
   grand_output(dealer_cards, dealer_total, player_cards, player_total)
-  # puts "============"
-  # prompt "Dealer has #{dealer_cards}, for a total of: #{dealer_total}"
-  # prompt "Player has #{player_cards}, for a total of: #{player_total}"
-  # puts "============"
-  #
-  # display_result(dealer_cards, player_cards)
-  #
+
+  result = detect_result(dealer_cards, player_cards)
+  case result
+
+  when :player_busted
+    dealer_score += 1
+  when :dealer_busted
+    player_score += 1
+  when :player
+    player_score += 1
+  when :dealer
+    dealer_score += 1
+  end
+  puts "Player score: #{player_score} Dealer score: #{dealer_score}"
+
   break unless play_again?
 end
 
