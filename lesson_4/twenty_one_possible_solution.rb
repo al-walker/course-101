@@ -82,6 +82,28 @@ def play_again?
   answer.downcase.start_with?('y')
 end
 
+def score(dealer_cards, player_cards, dealer_score, player_score)
+  result = detect_result(dealer_cards, player_cards)
+  case result
+
+  when :player_busted
+    dealer_score += 1
+  when :dealer_busted
+    player_score += 1
+  when :player
+    player_score += 1
+  when :dealer
+    dealer_score += 1
+  end
+  puts "Player score: #{player_score} Dealer score: #{dealer_score}"
+
+  if player_score == 5
+    puts "5 wins - Player wins game."
+  elsif dealer_score == 5
+    puts "5 wins - Dealer wins game."
+  end
+end
+
 def grand_output(dealer_cards, d_total, player_cards, p_total)
   puts "============"
   prompt "Dealer has #{dealer_cards}, for a total of: #{d_total}"
@@ -89,8 +111,7 @@ def grand_output(dealer_cards, d_total, player_cards, p_total)
   puts "============"
 
   display_result(dealer_cards, player_cards)
-  #update_score(dealer_cards, player_cards, dealer_score, player_score)
-
+  # update_score(dealer_cards, player_cards, dealer_score, player_score)
 end
 
 loop do
@@ -133,10 +154,9 @@ loop do
   player_total = total(player_cards)
   if busted?(player_cards)
     # display_result(dealer_cards, player_cards)
-    result = detect_result(dealer_cards, player_cards)
 
     grand_output(dealer_cards, dealer_total = 0, player_cards, player_total)
-
+    result = detect_result(dealer_cards, player_cards)
     case result
 
     when :player_busted
@@ -157,7 +177,7 @@ loop do
       puts "5 wins - Dealer wins game."
       break
     end
-
+    # score(dealer_cards, player_cards, dealer_score, player_score)
     play_again? ? next : break
   else
     prompt "You stayed at #{player_total}"
@@ -178,7 +198,7 @@ loop do
   if busted?(dealer_cards)
 
     grand_output(dealer_cards, dealer_total, player_cards, player_total)
-
+    # score(dealer_cards, player_cards, dealer_score, player_score)
     result = detect_result(dealer_cards, player_cards)
     case result
 
@@ -200,7 +220,6 @@ loop do
       puts "5 wins - Dealer wins game."
       break
     end
-
     play_again? ? next : break
   else
     prompt "Dealer stays at #{dealer_total}"
@@ -231,7 +250,7 @@ loop do
     puts "5 wins - Dealer wins game."
     break
   end
-
+  # score(dealer_cards, player_cards, dealer_score, player_score)
   break unless play_again?
 end
 
