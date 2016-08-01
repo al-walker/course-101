@@ -65,7 +65,7 @@ sum = 0
 loop do
  sum += arr[counter]
  counter += 1
-  break if counter == arr.size - 1
+  break if counter == arr.size
 
   new_var = "hello"
   # If there is a new variable initialized in an inner scope, it is not available in the outer scope.
