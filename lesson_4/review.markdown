@@ -12,8 +12,8 @@ printing out the value of the str variable
 def str
   "a method"
 end
-printing out the return value of the method invoction
-if you have both p str references the local variable. if I want to invoke the mehtod when I have both - I put p str() - with the parentheses. which is actually p( str() )
+printing out the return value of the method invocation
+if you have both p str references the local variable. if I want to invoke the method when I have both - I put p str() - with the parentheses. which is actually p( str() )
 p str
 
 bob.name = 'bob' # not assignment - invoking a method on bob - the method is named = equals
@@ -86,7 +86,6 @@ loop do
   puts str
 
   reassignment (yes, available in outer scope if reassigned in inner scope but originally initialized in outer scope) vs. initialization (not available outer scope if initialized in inner scope) no keyword differentiating reassignment and initialization n Ruby
-
 
 
 global variables start with a dollar sign - don't use at this point
