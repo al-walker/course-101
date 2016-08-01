@@ -1,5 +1,6 @@
-1. local variable scope, especially how local variables interact with blocks and methods
--------
+local variable scope, especially how local variables interact with blocks and methods
+
+
 local variable or method call - sometimes ambiguous - ruby syntactical sugar
 
 method invocation - parentheses optional
@@ -25,7 +26,9 @@ end
 p( bob.>(jim) )
 or
 p bob > jim
--------
+
+
+
 Where does the code come from
 
 Core API - loaded into the Ruby runtime that allows you to invoke methods - They are organized into classes or modules (ways to organize methods)
@@ -50,7 +53,41 @@ end
 
 external library or gem like pry
 require 'pry'
----------
+
+
+local variable scope
+
+arr = [1, 2, 3, 4]
+
+counter = 0
+sum = 0
+  # local variables initialized outside the block are accessible inside the block.
+loop do
+ sum += arr[counter]
+ counter += 1
+  break if counter == arr.size - 1
+
+  new_var = "hello"
+  # If there is a new variable initialized in an inner scope, it is not available in the outer scope.
+end
+
+puts "Your total is #{sum}"
+
+str = "hello"
+
+loop do
+  # yes accesible outside of block
+  # puts str
+  # str = "world"
+  # yes changed outside of block
+ break
+  end
+
+  puts str
+
+  reassignment (yes, available in outer scope if reassigned in inner scope but originally initialized in outer scope) vs. initialization (not available outer scope if initialized in inner scope) no keyword differentiating reassignment and initialization n Ruby
+
+
 
 global variables start with a dollar sign - don't use at this point
 
