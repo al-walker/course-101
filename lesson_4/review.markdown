@@ -173,7 +173,7 @@ puts b # "hello world universe"
 + concatenate returns new string str -> new_str
 << append str -> str
 
-# class methods
+ # class methods
 :: instance methods
 in docs :: or #
 
