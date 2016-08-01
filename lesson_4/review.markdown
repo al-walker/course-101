@@ -173,8 +173,8 @@ puts b # "hello world universe"
 + concatenate returns new string str -> new_str
 << append str -> str
 
- # class methods
-:: instance methods
+class methods #
+instance methods ::
 in docs :: or #
 
 -> if different on both sides new object is created
