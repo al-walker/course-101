@@ -1,9 +1,11 @@
-def is_a_number?(word)
- word.is_a? Integer
-end
-p is_a_number?('1')
-p is_a_number?(1) 
-p is_a_number?('hello'.to_i)
+# def is_a_number?(word)
+#  word.is_a? Integer
+# end
+#
+# p is_a_number?('1') # => false
+# p is_a_number?(1) # => true
+# p is_a_number?('hello'.to_i) # => true
+#
 # def is_a_number?(word)
 #   Integer(word) rescue false
 # end
@@ -66,3 +68,34 @@ p is_a_number?('hello'.to_i)
 # p change_letter(letter)
 # p letter
 # p new_letter
+
+a = "hello"
+b = a
+
+# mental model = variables point to objects
+# objects live in memory - take up space in memory
+
+# not reassignment - two variable initializations
+# a is initialized to point to "hello"
+# b is initialized to point to the same object
+# two variables - one object
+
+b << " world"
+# the left shift operator << is a destructive call - it is going into the object and modifying the value - it is not returning an new object
+puts a # "hello world"
+puts b # "hello world"
+
+# We have two variables and one object at this point. Any destructive call will modify the object and a and b will both see the change.
+
+a = "hey"
+
+# Now  there are 2 variables and two objects a is now pointing to the new object with the value "hey"
+
+# a = a + b
+# a += b
+# These will also return a new string object - reassignment 2 "hello world"s but a new object
+
+b << " universe"
+
+puts a # "hey" reassignment
+puts b # "hello world universe"
