@@ -205,3 +205,83 @@ name = 'joe'
 prefix(name)
 
 puts name
+
+Arrays and Hashes
+
+develop clarity on these concepts
+
+How do you know a method will mutate an argument?
+If the operation inside the method invokes a destructive call.
+
+However, if there is reassignment that happens beforehand, the destructive action is being invoked on a new method unrelated to the one you passed in.
+
+variables are pointers to objects.
+
+a variable can be initialized to an existing object.
+
+a = 'hi' # a is pointing to an object 'hi'
+b = a # b is pointing to an existing object 'hi'
+
+a += b  # a is being reassigned to a new object. 'hihi'
+
+>> a = 'hi'
+=> "hi"
+>> b = a
+=> "hi"
+>> a += b
+=> "hihi"
+>> a
+=> "hihi"
+>> b
+=> "hi"
+
+we now have two variables pointing to two objects.
+
+4.times { puts 'hi' }
+'hi'.capitalize
+
+a destructive action called on an object changes the value of that object.
+all variables pointing to that object will see the change.
+
+when variables point to objects, they can retrieve the value or they can update the value.
+
+collections
+
+arrays, hashes, strings
+
+data structure means a structure that holds data.
+
+a collection is a type of data structure
+
+an array [4, 3, 2, 1] series of elements retrievable by index starts at 0
+a hash {:a => 1} or {a: 1} key value pairs dictionary keys must be unique.
+
+In ruby hash order is preserved but we don't retrieve by order we retrieve by key
+In an array order matters we retrieve by index
+
+symbols are immutable
+
+symbols are not StringLiterals
+hsh = {a: 1}
+if you use hsh['a'] to retrieve will return nil with no error
+if you use hsh.fetch('a') will return a key not found: 'a' error
+hsh.fetch(:a)
+=> 1
+
+think of symbols as immutable strings
+
+arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+puts arr[4] => 5
+
+idx = 0
+loop do
+  puts arr[idx]
+  idx += 1
+  break if idx == arr.size
+end
+
+
+
+
+Common mistakes when using select and map
+The Enumerable module
