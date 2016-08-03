@@ -359,7 +359,9 @@ arr << hsh
 last element is a giant hash
 hsh[:f] = 6
 arr is modified because variables are pointers this object is part of the array
+
 hsh is pointing to an object - hsh goes into the array but it still points to the object
+
 if you have a variable pointing to an object in a data structure - the data structure could change if the object that is pointed to changes.
 
 Common mistakes when using select and map
