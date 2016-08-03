@@ -280,8 +280,96 @@ loop do
   break if idx == arr.size
 end
 
+The block is getting passed into the each method.
+It is an argument.
+like an anonymous function
+a way to pass chunks of code around in Ruby (closures)
+each will do somthing with each element in the array.
+arr.each do |n|
+  puts n
+end
 
+The return value is different the loop returns nil
+each returns the original array
 
+We need to be aware of the return value of our code.
+
+arr.each do |n|
+  puts n if n > 5
+end
+
+append 12 to the end of the array
+arr << 12
+prepend 0 to the beginning of the array
+arr.unshift(0)
+remove the 12 and add a 3
+arr.pop
+arr << 3
+uniq returns a new array without duplicates doesn't affect arr
+arr.uniq!
+uniq! changes arr
+
+arr.select { |n| n.odd? }
+
+best definition - select returns a new array based on the blocks's return value.  If the return value evaluates to true, then the element is selected.
+odds = arr.select do |n|
+  n + 1
+  puts n
+end
+
+puts n returns nil so the entire block returns nil so no element is selected.
+when n + 1 was the last line it evaluates to true so the entire block returns true so all elements are selected.
+
+select cares about the return values truthiness
+
+definition of map - map is transformation not selection
+map returns a new array based on the block's return value. Each element is transformed based on the return value.
+
+incremented = arr.map { |n| n + 1 }
+
+incremented = arr.map do |n|
+  n.odd? # returns array of booleans
+  puts # returns an array of nils
+end
+
+Even simple methods have depth to them. You need a precise definition of how they work.
+
+hsh = {a: 1, b: 2, c: 3, d: 4, e: 5}
+
+hsh[:b]
+
+hsh[:e] = 5
+
+hsh.each do |k, v|
+  puts "key is #{k} and value is #{v}" if v < 3.5
+end
+
+small_vals = hsh.select do |k, v|
+  v < 3.5
+end
+
+delete_if is a destructive call
+small_vals = hsh.delete_if do |k, v|
+  v < 3.5
+end
+
+if you have
+
+arr << hsh
+last element is a giant hash
+hsh[:f] = 6
+arr is modified because variables are pointers this object is part of the array
+hsh is pointing to an object - hsh goes into the array but it still points to the object
+if you have a variable pointing to an object in a data structure - the data structure could change if the object that is pointed to changes.
 
 Common mistakes when using select and map
+- must have a precise definition.
 The Enumerable module
+-.all? .any? can ask questions they return true or false
+
+.all? comes from the Enumerable module - mixed into arrays and hashes.
+.max .min .map .reject .sort .to_a
+
+collection oriented methods in this module
+The class must provide a message each to use Enumerable
+to mix in Enumerable all you need is an .each method
