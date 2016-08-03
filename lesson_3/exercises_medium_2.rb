@@ -38,17 +38,17 @@ p munsters.each { |name, details| puts "#{name} is a (#{details['age']}) year ol
 
 # Question 3
 
-# def tricky_method(a_string_param, an_array_param)
-#   a_string_param += "rutabaga"
-#   an_array_param << "rutabaga"
-# end
-#
-# my_string = "pumpkins"
-# my_array = ["pumpkins"]
-# tricky_method(my_string, my_array)
-#
-# puts "My string looks like this now: #{my_string}"
-# puts "My array looks like this now: #{my_array}"
+def tricky_method(a_string_param, an_array_param)
+   a_string_param += "rutabaga"
+   an_array_param << "rutabaga"
+ end
+
+ my_string = "pumpkins"
+ my_array = ["pumpkins"]
+ tricky_method(my_string, my_array)
+
+ puts "My string looks like this now: #{my_string}"
+ puts "My array looks like this now: #{my_array}"
 
 def not_so_tricky_method(a_string_param, an_array_param)
   a_string_param += " rutabaga"
@@ -68,11 +68,11 @@ puts "My array looks like this now: #{my_array}"
 
 sentence = "Humpty Dumpty sat on a wall."
 
-#p sentence.split.reverse.join(' ')
+p sentence.split(/\W/).reverse.join(' ')
 # or
-p words = sentence.split(/\W/)
-p words.reverse!
-p backwards_sentence = words.join(' ') + '.'
+words = sentence.split(/\W/)
+words.reverse!
+backwards_sentence = words.join(' ') + '.'
 
 # Question 5
 
