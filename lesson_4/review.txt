@@ -88,7 +88,7 @@ loop do
   reassignment (yes, available in outer scope if reassigned in inner scope but originally initialized in outer scope) vs. initialization (not available outer scope if initialized in inner scope) no keyword differentiating reassignment and initialization n Ruby
 
 
-The more precise answer would be "the method outputs the string hello word, and returns nil". In programming, we are always concerned with the output and the return value and mutations to objects. We need to speak in those terms, and not use vague words
+The more precise answer would be "the method outputs the string hello word, and returns nil". In programming, we are always concerned with the output and the return value and mutations to objects. We need to speak in those terms, and not use vague words.
 
 global variables start with a dollar sign - don't use at this point
 
@@ -261,7 +261,7 @@ In an array order matters we retrieve by index
 
 symbols are immutable
 
-symbols are not StringLiterals
+symbols are not String Literals
 hsh = {a: 1}
 if you use hsh['a'] to retrieve will return nil with no error
 if you use hsh.fetch('a') will return a key not found: 'a' error
@@ -375,3 +375,16 @@ The Enumerable module
 collection oriented methods in this module
 The class must provide a message each to use Enumerable
 to mix in Enumerable all you need is an .each method
+
+[1] pry(main)> a = [1, 2, 3]
+=> [1, 2, 3]
+[2] pry(main)> a << [4, 5]
+=> [1, 2, 3, [4, 5]]
+[3] pry(main)> a.flatten
+=> [1, 2, 3, 4, 5]
+[4] pry(main)> a
+=> [1, 2, 3, [4, 5]]
+[5] pry(main)> a.flatten!
+=> [1, 2, 3, 4, 5]
+[6] pry(main)> a
+=> [1, 2, 3, 4, 5]
