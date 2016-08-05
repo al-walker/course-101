@@ -443,3 +443,7 @@ pry(main)> a = [1, 2, 3]
 => [1, 4, 9]
 
 Ruby methods ALWAYS return the evaluated result of the last line of the expression unless an explicit return comes before it.
+
+We've seen that method calls always return a value and we can pass that method call as an argument to another method based on the returned value. Thus its vital to know what our defined methods are returning, since in the final analysis, this is what is actually being passed as arguments to other methods.
+
+puts returns nil
