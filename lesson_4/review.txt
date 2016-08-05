@@ -441,3 +441,5 @@ pry(main)> a = [1, 2, 3]
 => [1, 4, 9]
 [18] pry(main)> a
 => [1, 4, 9]
+
+Ruby methods ALWAYS return the evaluated result of the last line of the expression unless an explicit return comes before it.
