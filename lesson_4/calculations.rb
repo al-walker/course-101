@@ -22,11 +22,11 @@ end
 
 # Paint calculator
 
-length_of_room = 10
-width_of_room = 100
+length_of_room = 17
+width_of_room = 70
 
-square_feet = 360 #length_of_room * width_of_room
+square_feet = length_of_room * width_of_room
 gallon = 350
 
-puts "You will need to purchase #{(square_feet.to_f / gallon.to_f).ceil} gallons"
-puts "of paint ot cover #{square_feet} square_feet."
+puts "You will need to purchase #{(square_feet.to_f / gallon.to_f).ceil}"
+puts "gallons of paint ot cover #{square_feet} square_feet."
