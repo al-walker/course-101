@@ -1,3 +1,5 @@
+require 'pry'
+
 # Area of a rectangle
 
 length = 2
@@ -34,14 +36,13 @@ puts "gallons of paint ot cover #{square_feet} square_feet."
 # Self-checkout
 
 TAX = 0.055
-
 item_one = 10
 item_two = 10
 item_three = 10
 
-quantity =
+quantity = [1, 2, 3]
 
-  subtotal = item_one + item_two + item_three
+subtotal = (item_one * quantity[0]) + (item_two * quantity[1]) + (item_three * quantity[2])
 
 puts "Subtotal: #{subtotal}"
 puts "Tax: #{subtotal * TAX}"
