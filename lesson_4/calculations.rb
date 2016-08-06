@@ -30,3 +30,19 @@ gallon = 350
 
 puts "You will need to purchase #{(square_feet.to_f / gallon.to_f).ceil}"
 puts "gallons of paint ot cover #{square_feet} square_feet."
+
+# Self-checkout
+
+TAX = 0.055
+
+item_one = 10
+item_two = 10
+item_three = 10
+
+quantity =
+
+  subtotal = item_one + item_two + item_three
+
+puts "Subtotal: #{subtotal}"
+puts "Tax: #{subtotal * TAX}"
+puts "Total: #{subtotal + (subtotal * TAX)}"
