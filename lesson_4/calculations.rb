@@ -57,3 +57,13 @@ puts "Subtotal: $#{format('%.2f', subtotal)}"
 puts "Tax: $#{format('%.2f', subtotal * TAX)}"
 total = subtotal + (subtotal * TAX)
 puts "Total: $#{format('%.2f', total)}"
+
+# Currency coversion
+
+amount_to = ''
+
+amount_from = ''
+
+rate_from = ''
+
+rate_to = ''
