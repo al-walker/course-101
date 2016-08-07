@@ -36,13 +36,20 @@ puts "gallons of paint ot cover #{square_feet} square_feet."
 # Self-checkout
 
 TAX = 0.055
-item_one = 10
-item_two = 10
-item_three = 10
+quantity = []
+item_prices = []
 
-quantity = [1, 2, 3]
+number = 1
+loop do
+  break if number == 4
+  puts "Enter the price of item #{number}: "
+  item_prices << gets.chomp.to_i
+  puts "Enter the quantity of item #{number}: "
+  quantity << gets.chomp.to_i
+  number += 1
+end
 
-subtotal = (item_one * quantity[0]) + (item_two * quantity[1]) + (item_three * quantity[2])
+subtotal = (item_prices[0] * quantity[0]) + (item_prices[1] * quantity[1]) + (item_prices[2] * quantity[2])
 
 puts "Subtotal: #{subtotal}"
 puts "Tax: #{subtotal * TAX}"
