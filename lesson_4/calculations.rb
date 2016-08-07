@@ -51,7 +51,7 @@ end
 
 subtotal = (item_prices[0] * quantity[0]) + (item_prices[1] * quantity[1]) + (item_prices[2] * quantity[2])
 
-puts "Subtotal: $#{sprintf('%.2f', subtotal)}"
-puts "Tax: $#{sprintf('%.2f', subtotal * TAX)}"
+puts "Subtotal: $#{format('%.2f', subtotal)}"
+puts "Tax: $#{format('%.2f', subtotal * TAX)}"
 total = subtotal + (subtotal * TAX)
-puts "Total: $#{sprintf('%.2f', total)}"
+puts "Total: $#{format('%.2f', total)}"
