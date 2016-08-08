@@ -60,20 +60,19 @@ puts "Total: $#{format('%.2f', total)}"
 
 # Currency coversion
 
-amount_to = ''
+# amount_to =
+#
+# amount_from =
+#
+# rate_from = 137.51
+#
+# rate_to = 1.108
+#
+# puts "How many Euros are you exchanging?"
+# amount_from = gets.chomp.to_i
 
-amount_from = ''
-
-rate_from = ''
-
-rate_to = 1.0
-
-puts "How many Euros are you exchanging?"
-amount_from = gets.chomp.to_f.ceil
-
-puts "What is the exchange rate of the Euro?"
-rate_from = gets.chomp.to_f.ceil
-
-amount_to = amount_from * rate_from / rate_to
-
-puts "#{amount_from} Euros at an exchange rate of #{rate_from} is #{amount_to} U.S. Dollars"
+# puts "What is the exchange rate of the Euro?"
+# rate_from = gets.chomp.to_f
+# amount_to = amount_from * rate_from / rate_to
+#
+# puts "#{format('%.2f', amount_from)} Euros at an exchange rate of #{format('%.2f',rate_from)} is $#{format('%.2f', amount_to)} U.S. Dollars"
