@@ -2,6 +2,10 @@
 (('hello' + 'world').split << 'hi').join.split('')
 => ["h", "e", "l", "l", "o", "w", "o", "r", "l", "d", "h", "i"]
 
+[10] pry(main)> (('hello' + 'world').split << 'hi').join.split('').join.insert(5, ' ').insert(11, ' ')
+=> "hello world hi"
+
+
 # def is_a_number?(word)
 #  word.is  _a? Integer
 # end
