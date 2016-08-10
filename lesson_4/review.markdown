@@ -4,23 +4,26 @@ def test(name)
 end
 ```
 
-local variable scope, especially how local variables interact with blocks and methods
+### local variable scope, especially how local variables interact with blocks and methods
 
+#### local variable or method call - sometimes ambiguous - ruby syntactical sugar
 
-local variable or method call - sometimes ambiguous - ruby syntactical sugar
-
-method invocation - parentheses optional
+#### method invocation - parentheses optional
+```ruby
 puts("hello")
 
 str = "a string"
-printing out the value of the str variable
+```
+
+#### printing out the value of the str variable
 
 def str
   "a method"
 end
-printing out the return value of the method invocation
+
+**printing out the return value of the method invocation
 if you have both p str references the local variable. if I want to invoke the method when I have both - I put p str() - with the parentheses. which is actually p( str() )
-p str
+p str**
 
 bob.name = 'bob' # not assignment - invoking a method on bob - the method is named = equals
 bob.name=('bob') # parentheses optional
