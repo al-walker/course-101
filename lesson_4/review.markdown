@@ -1,3 +1,9 @@
+'''ruby
+def test(name)
+  hello << name
+end
+'''
+
 local variable scope, especially how local variables interact with blocks and methods
 
 
