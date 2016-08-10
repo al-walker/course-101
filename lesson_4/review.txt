@@ -27,8 +27,6 @@ p( bob.>(jim) )
 or
 p bob > jim
 
-
-
 Where does the code come from
 
 Core API - loaded into the Ruby runtime that allows you to invoke methods - They are organized into classes or modules (ways to organize methods)
@@ -447,3 +445,20 @@ Ruby methods ALWAYS return the evaluated result of the last line of the expressi
 We've seen that method calls always return a value and we can pass that method call as an argument to another method based on the returned value. Thus its vital to know what our defined methods are returning, since in the final analysis, this is what is actually being passed as arguments to other methods.
 
 puts returns nil
+
+In Ruby, every expression evaluates to true when used in flow control, except for false and nil.
+
+irb :001 > if 1
+irb :002 > puts "Hello, World!"
+irb :003 > end
+Hello, World!
+=> nil
+
+In Ruby, every expression evaluates to true when used in flow control, except for false and nil.
+
+irb :001 > false == nil
+=> false
+
+While both false and nil are both treated as negative when evaluated in an expression, they are not equivalent, as demonstrated by the above.
+
+remember that Ruby expressions always return a value, even if that value is nil or an error.
