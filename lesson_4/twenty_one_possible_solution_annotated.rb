@@ -17,18 +17,26 @@ DEALER_STAY = 17
 player_score = 0
 dealer_score = 0
 
+# Define a method with one parameter (that accepts one argument), prints out the argument, and returns nil.
 def prompt(msg)
   puts "=> #{msg}"
 end
 
+# Define a method that combines the values in SUITS and VALUES and randomizes the results.
 def initialize_deck
   SUITS.product(VALUES).shuffle
 end
 
+# Define a method with one parameter, cards.
 def total(cards)
+# The cards argument points to the first two cards dealt to the players in an array of arrays.
+  # The .map method iterates through the cards array and maps the values of each card to a new array. The values are accesible by their index, card[1]
+  # The cards array is unaffected since .map is non-destructive.
   values = cards.map { |card| card[1] }
-
+  binding.pry
+  # The sum variable is initialized to 0.
   sum = 0
+  # The .each method is used to interate through the array pointed to by the values variable.
   values.each do |value|
     if value == "A"
       sum += 11
