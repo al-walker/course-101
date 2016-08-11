@@ -33,21 +33,27 @@ def total(cards)
   # The .map method iterates through the cards array and maps the values of each card to a new array. The values are accesible by their index, card[1]
   # The cards array is unaffected since .map is non-destructive.
   values = cards.map { |card| card[1] }
-  binding.pry
   # The sum variable is initialized to 0.
   sum = 0
   # The .each method is used to interate through the array pointed to by the values variable.
+  # Each item is assigned to (pointed to by) the block variable, value. The block level variable is not accessible outside of the block.
   values.each do |value|
+    # The condtional, if statement, compares the value pointed to with the string "A".
     if value == "A"
+      # If the conditional statement is true, sum is reassigned to sum + 11.
       sum += 11
+      # If the first conditional statement is not true, and calling .to_i on value returns 0, sum is reassigned to sum + 10
     elsif value.to_i == 0
       sum += 10
+      # If the first two conditional statements evaluate to false, reassign sum to sum + the value returned by calling to_i on value.
     else
       sum += value.to_i
     end
   end
-
+# Select from values any value that is equal to the string "A". Count the number of times that select returns true. Execute the code contained in the block the number of times returned by the .count method.
   values.select { |value| value == "A" }.count.times do
+    # If the value pointed to by the sum variable is greater than the value stored in the HAND_TOTAL constant (21) reassign sum to sum - 10. (assigning the value of the Ace to one.)
+    # If there are no aces, .select returns an empty array. Calling .count on an empty array will return 0, sot the code in the block will not run.
     sum -= 10 if sum > HAND_TOTAL
   end
 
