@@ -43,3 +43,30 @@ answer.downcase.start_with?('y')
 [2] pry(main)> answer.downcase.start_with?('y')
 => true
 ```
+
+The grand_output method definition requires four parameters. When the method is called, it must pass four arguments to the method. This outside information will be used tp display the grand output to the player. Strings containing the interpolated values of variables passed to the method are displayed by passing these strings to the prompt method. The grand_output method displays the outcome of the game and returns nil.
+
+```ruby
+122: def grand_output(dealer_cards, d_total, player_cards, p_total)
+    123:   puts "============"
+    124:   prompt "Dealer has #{dealer_cards}, for a total of: #{d_total}"
+    125:   prompt "Player has #{player_cards}, for a total of: #{p_total}"
+    126:   puts "============"
+    127:
+    128:   display_result(dealer_cards, player_cards)
+    129:   # update_score(dealer_cards, player_cards, dealer_score, player_score)
+ => 130:   binding.pry
+    131: end
+
+[1] pry(main)> display_result(dealer_cards, player_cards)
+=> Dealer busted! You win!
+=> nil
+[2] pry(main)> dealer_cards
+=> [["C", "Q"], ["C", "6"], ["D", "9"]]
+[3] pry(main)> d_total
+=> 25
+[4] pry(main)> player_cards
+=> [["D", "2"], ["C", "K"], ["D", "4"]]
+[5] pry(main)> p_total
+=> 16
+```
