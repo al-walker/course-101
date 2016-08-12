@@ -1,5 +1,6 @@
-```ruby
+The display result method returns a symbol. The symbol is assigned to the variable, result. This variable is then used in a case statement to display the the results of the game to the player. The results are displayed by passing a string as an argument to the prompt method.
 
+```ruby
 95: def display_result(dealer_cards, player_cards)
      96:   result = detect_result(dealer_cards, player_cards)
      97:
