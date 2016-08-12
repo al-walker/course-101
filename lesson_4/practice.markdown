@@ -21,4 +21,4 @@
 
 [1] pry(main)> result
 => :dealer_busted
-'''
+```
