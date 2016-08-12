@@ -108,6 +108,7 @@ def display_result(dealer_cards, player_cards)
   when :tie
     prompt "It's a tie!"
   end
+  binding.pry
 end
 
 def play_again?
