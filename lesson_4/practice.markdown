@@ -44,7 +44,7 @@ answer.downcase.start_with?('y')
 => true
 ```
 
-The grand_output method definition requires four parameters. When the method is called, it must pass four arguments to the method. This outside information will be used tp display the grand output to the player. Strings containing the interpolated values of variables passed to the method are displayed by passing these strings to the prompt method. The grand_output method displays the outcome of the game and returns nil.
+The grand_output method definition defines four parameters. When the grand_output is called, four arguments must be passed in to the method. This outside information will be used to display the grand output to the player. Strings containing the interpolated values of variables passed to the method are displayed by passing these strings to the prompt method. The grand_output method displays the outcome of the game and returns nil. This is due to the last statement in the method, display_result(dealer_cards, player_cards).
 
 ```ruby
 122: def grand_output(dealer_cards, d_total, player_cards, p_total)
