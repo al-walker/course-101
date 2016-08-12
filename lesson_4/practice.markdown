@@ -24,7 +24,11 @@ The display result method returns a symbol. The symbol is assigned to the variab
 => :dealer_busted
 ```
 
-The play_again? method accepts input from the player using the gets method. The trailing new line character is removed by calling the .chomp method on the result of .gets.  The result of gets.chomp is assigned to the varable, answer.  The play_again? method returns an boolean value. The question mark at the end is a Ruby convention to signify that a method returns true or false. The statement ```ruby answer.downcase.start_with?('y')``` in the pry session example returns true and it is the last statement in the method so it is implicitly returned. This statement contains chained methods.  The variable answer points to the user response.  .downcase makes sure that the user input is lower case by downcsing the string assigned to answer. The method start_with? accepts one argument.  In this case it is the string 'y'. The method compares the downcased version of the string assigned to answer with the string supplied as the argument to the method.  If the comparison evaluates to true, start_with? returns true.
+The play_again? method accepts input from the player using the gets method. The trailing new line character is removed by calling the .chomp method on the result of .gets.  The result of gets.chomp is assigned to the varable, answer.  The play_again? method returns an boolean value. The question mark at the end is a Ruby convention to signify that a method returns true or false. The statement
+```ruby
+answer.downcase.start_with?('y')
+```
+ in the pry session example returns true and it is the last statement in the method so it is implicitly returned. This statement contains chained methods.  The variable answer points to the user response.  .downcase makes sure that the user input is lower case by downcsing the string assigned to answer. The method start_with? accepts one argument.  In this case it is the string 'y'. The method compares the downcased version of the string assigned to answer with the string supplied as the argument to the method.  If the comparison evaluates to true, start_with? returns true.
 ```ruby
 115: def play_again?
     116:   puts "------------"
