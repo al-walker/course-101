@@ -71,6 +71,8 @@ The grand_output method definition defines four parameters. When the grand_outpu
 => 16
 ```
 
+This loop structure prompts the player to enter an 'h' or an 's'. The response is downcased and assigned to the player_turn variable. The array method .include? is used to determine if the player entered the appropriate values.  The value assigned to the player_turn variable is passed to the .include? method.  This value is compared to the two values assigned to the array.  If the value passed into the .include? method matches one of the array values, the method returns true.  If not, the method returns false.
+
 ```ruby
 150:   loop do
    151:     player_turn = nil
@@ -90,4 +92,32 @@ The grand_output method definition defines four parameters. When the grand_outpu
 => true
 ```
 
-This loop structure prompts the player to enter an 'h' or an 's'. The response is downcased and assigned to the player_turn variable. The array method .include? is used to determine if the player entered the appropriate values.  The value assigned to the player_turn variable is passed to the .include? method.  This value is compared to the two values assigned to the array.  If the value passed into the .include? method matches one of the array values, the method returns true.  If not, the method returns false. 
+This example is from the tic-tac-toe bonus features assignment.  It forms part of the computer players AI.  If a square has not yet been selected by the computer
+```ruby
+!square
+```
+and the value for the brd hash key 5 is an empty string,
+```ruby
+brd.values_at(5) == [" "]
+```
+The computer selects this space by assigning its key to the variable, square.
+The pry session below demonstrates how chaining the .select, .invert, and .fetch methods together achieve the goal of assigning the ineger, 5, to the variable, square. First, the hash with the key of 5 is selected. The invert method reverses the hash making the integer 5 the value and the empty string the key. .invert is non-destructive, so the effect is temporary, only for the duration of these chained method calls. The .fetch method retrieves the value using the empty string as the key.  .fetch takes the key as an argument and returns the value associated with that key.
+```ruby
+77:   if !square
+    78:     if brd.values_at(5) == [" "]
+    79:       square = brd.select { |k, _| k == 5 }.invert.fetch(' ')
+    80:     end
+    81:   end
+[1] pry(main)> square
+=> 5
+[2] pry(main)> brd.select { |k, _| k == 5 }
+=> {5=>" "}
+[3] pry(main)> brd.select { |k, _| k == 5 }.invert
+=> {" "=>5}
+[4] pry(main)> brd.select { |k, _| k == 5 }.invert.fetch(' ')
+=> 5
+[5] pry(main)> brd.values_at(5) == [" "]
+=> true
+[6] pry(main)> !square
+=> false
+```
