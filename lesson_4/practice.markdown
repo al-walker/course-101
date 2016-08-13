@@ -102,6 +102,7 @@ brd.values_at(5) == [" "]
 ```
 The computer selects this space by assigning its key to the variable, square.
 The pry session below demonstrates how chaining the .select, .invert, and .fetch methods together achieve the goal of assigning the ineger, 5, to the variable, square. First, the hash with the key of 5 is selected. The invert method reverses the hash making the integer 5 the value and the empty string the key. .invert is non-destructive, so the effect is temporary, only for the duration of these chained method calls. The .fetch method retrieves the value using the empty string as the key.  .fetch takes the key as an argument and returns the value associated with that key.
+
 ```ruby
 77:   if !square
     78:     if brd.values_at(5) == [" "]
@@ -120,4 +121,25 @@ The pry session below demonstrates how chaining the .select, .invert, and .fetch
 => true
 [6] pry(main)> !square
 => false
+```
+
+The string "0" is assigned to the constant, COMPUTER_MARKER. This string is assigned to the value of brd hash with the key of 5.
+```ruby
+brd[square] = COMPUTER_MARKER
+```
+The value, 5, is assigned to the variable, square by the preceding sample code.
+
+```ruby
+brd[square] = COMPUTER_MARKER
+ => 88:   binding.pry
+    89: end
+
+[1] pry(main)> COMPUTER_MARKER
+=> "O"
+[2] pry(main)> brd[square]
+=> "O"
+[3] pry(main)> square
+=> 5
+[4] pry(main)> brd[square] = COMPUTER_MARKER
+=> "O"
 ```
