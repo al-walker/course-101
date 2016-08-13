@@ -90,4 +90,4 @@ The grand_output method definition defines four parameters. When the grand_outpu
 => true
 ```
 
-This loop structure prompts the player to enter an 'h' or an 's'. The response is downcased and assigned to the player_turn variable. The array method .include? is used to determine if the player entered the appropriate values.  The player_turn variable id passed to the .include? method.
+This loop structure prompts the player to enter an 'h' or an 's'. The response is downcased and assigned to the player_turn variable. The array method .include? is used to determine if the player entered the appropriate values.  The value assigned to the player_turn variable is passed to the .include? method.  This value is compared to the two values assigned to the array.  If the value passed into the .include? method matches one of the array values, the method returns true.  If not, the method returns false. 
