@@ -70,3 +70,24 @@ The grand_output method definition defines four parameters. When the grand_outpu
 [5] pry(main)> p_total
 => 16
 ```
+
+```ruby
+150:   loop do
+   151:     player_turn = nil
+   152:     loop do
+   153:       prompt "Would you like to (h)it or (s)tay?"
+   154:       player_turn = gets.chomp.downcase
+=> 155:       binding.pry
+   156:       break if ['h', 's'].include?(player_turn)
+   157:       prompt "Sorry, must enter 'h' or 's'."
+   158:     end
+   159:
+   160:     if player_turn == 'h'
+
+[1] pry(main)> player_turn
+=> "h"
+[2] pry(main)> ['h', 's'].include?(player_turn)
+=> true
+```
+
+This loop structure prompts the player to enter an 'h' or an 's'. The response is downcased and assigned to the player_turn variable. The array method .include? is used to determine if the player entered the appropriate values.  The player_turn variable id passed to the .include? method.
