@@ -161,3 +161,27 @@ WINNING_LINES.each do |line|
 => nil
 [4] pry(main)> find_at_risk_square(line, brd)
 ```
+
+```ruby
+92: def find_at_risk_square(line, board)
+    93:   if board.values_at(*line).count(PLAYER_MARKER) == 2
+    94:     board.select { |k, v| line.include?(k) && v == INITIAL_MARKER }.keys.first
+    95:   end
+ => 96:  binding.pry
+    97: end
+
+[1] pry(main)> line
+=> [1, 2, 3]
+[2] pry(main)> board
+=> {1=>" ", 2=>" ", 3=>"X", 4=>" ", 5=>" ", 6=>" ", 7=>" ", 8=>" ", 9=>" "}
+[3] pry(main)> board.values_at(*line)
+=> [" ", " ", "X"]
+[4] pry(main)> board.values_at(*line).count(PLAYER_MARKER)
+=> 1
+[5] pry(main)> board.values_at(*line).count(PLAYER_MARKER) == 2
+=> false
+[6] pry(main)> board.select { |k, v| line.include?(k) && v == INITIAL_MARKER }.keys
+=> [1, 2]
+[7] pry(main)> board.select { |k, v| line.include?(k) && v == INITIAL_MARKER }.keys.first
+=> 1
+```
