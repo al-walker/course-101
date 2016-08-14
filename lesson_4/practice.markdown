@@ -143,3 +143,21 @@ brd[square] = COMPUTER_MARKER
 [4] pry(main)> brd[square] = COMPUTER_MARKER
 => "O"
 ```
+
+```ruby
+WINNING_LINES.each do |line|
+   66:     square = go_for_the_win(line, brd)
+   67:     break if square
+=> 68:     binding.pry
+   69:   end
+```
+
+```ruby
+[1] pry(main)> line
+=> [1, 2, 3]
+[2] pry(main)> WINNING_LINES
+=> [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]]
+[3] pry(main)> square
+=> nil
+[4] pry(main)> find_at_risk_square(line, brd)
+```
