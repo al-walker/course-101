@@ -65,6 +65,7 @@ def computer_places_piece!(brd)
   WINNING_LINES.each do |line|
     square = go_for_the_win(line, brd)
     break if square
+    binding.pry
   end
 
   if !square
@@ -85,12 +86,14 @@ def computer_places_piece!(brd)
   end
 
   brd[square] = COMPUTER_MARKER
+  binding.pry
 end
 
 def find_at_risk_square(line, board)
   if board.values_at(*line).count(PLAYER_MARKER) == 2
     board.select { |k, v| line.include?(k) && v == INITIAL_MARKER }.keys.first
   end
+ binding.pry
 end
 
 def go_for_the_win(line, board)
