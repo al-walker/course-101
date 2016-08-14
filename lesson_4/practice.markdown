@@ -161,7 +161,7 @@ WINNING_LINES.each do |line|
 => nil
 [4] pry(main)> find_at_risk_square(line, brd)
 ```
-
+Calling the method .each on the WINNING_LINES constant will return an array for each line of the board and assign this array to the block level line variable.
 ```ruby
 92: def find_at_risk_square(line, board)
     93:   if board.values_at(*line).count(PLAYER_MARKER) == 2
