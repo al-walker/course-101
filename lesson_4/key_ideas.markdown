@@ -53,3 +53,17 @@ puts t            # prints abc*
 ```
 
 Here, the String object abc is mutable. You can reasonably say that t is modified by #append since t is passed by reference to #append where it is bound to variable s. When s is modified by append, it modifies the same object referenced by t, so upon return from the method, t still refers to the original (albeit modified) String object.
+
+ Ruby variables are merely references to objects in memory
+
+ a variable is merely a name for some object
+
+ Multiple variables can refererence the same object, so modifying an object using a given variable name will be reflected in every other variable that is bound to that object.
+
+assignment to a variable merely changes the binding; the object the variable originally referenced is not modified. Instead, a different object is bound to the variable.
+
+certain object types, primarily numbers and Booleans but also some other types, are immutable in Ruby
+
+If you attempt to change an immutable object, you won’t succeed — at best, you can create a new object, and bind a variable to that object with assignment. Mutable objects, however, can be modified without creating new objects.
+
+We’ve established a mental model that says that Ruby is pass by value for immutable objects, pass by reference otherwise. This model isn’t perfect, but it can be used to help determine whether the object associated bound to an argument will be modified.
