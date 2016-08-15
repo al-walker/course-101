@@ -39,3 +39,17 @@ b = 3
 puts increment(b)    # prints 4
 puts b               # prints 3
 ```
+ the original object referenced by b is untouched.
+
+ Mutable objects, on the other hand, can always be modified simply by calling one of their mutating methods. They act like Ruby passes them around by reference; it isn’t necessary for a method to modify an object that is passed by reference, only that it can modify the object. As you’ll recall, pass by reference means that only a reference to an object is passed around; the variables used inside a method are bound to the original objects. This means that the method is free to modify those objects. Once again, this isn’t completely accurate, but it is helpful. For instance:
+```ruby
+ def append(s)
+  s << '*'
+end
+
+t = 'abc'
+puts append(t)    # prints abc*
+puts t            # prints abc*
+```
+
+Here, the String object abc is mutable. You can reasonably say that t is modified by #append since t is passed by reference to #append where it is bound to variable s. When s is modified by append, it modifies the same object referenced by t, so upon return from the method, t still refers to the original (albeit modified) String object.
