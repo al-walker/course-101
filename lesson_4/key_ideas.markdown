@@ -199,3 +199,67 @@ Though it looks as if we are modifying s when we write s += ' World', we are act
 String#concat is a mutating method, but it does not include a !.
 
 Consider the String#strip! method that removes leading and trailing whitespace from a String object:
+
+Indexed Assignment is Mutating
+
+Indexed assignment, such as that used by String, Hash, and Array objects can be confusing:
+
+```ruby
+str[3] = 'x'
+array[5] = Person.new
+hash[:age] = 25
+```
+
+This looks exactly like assignment, which is non-mutating, but is, in fact, mutating. #[] modifies the original object (the String, Array, or Hash). It doesn’t change the binding of each variable.
+
+```ruby
+def fix(value)
+  value[1] = 'x'
+  value
+end
+
+s = 'abc'
+t = fix(s)
+p s            # "axc"
+p t            # "axc"
+p s.object_id  # 70349153406320
+p t.object_id  # 70349153406320
+```
+Earlier, we saw similar code that merely assigned to value, and we saw that performing assignment bound value to a completely new String. Thus, s and t referenced different objects.
+
+Here, though, we are using indexed assignment instead, and, perhaps surprisingly, the binding does not change. Even after the assignment to value[1], value still references the same (albeit mutated) String object.
+
+The reason for this is that indexed assignment is a method that a class must supply if it needs indexed assignment. This method is named #[]=, and #[]= is expected to mutate the object to which it applies. It does not create a new object.
+
+```ruby
+>> a = [3, 5, 8]
+=> [3, 5, 8]
+
+>> a.object_id
+=> 70240541515340
+
+>> a[1].object_id
+=> 11
+
+>> a[1] = 9
+=> 9
+
+>> a[1].object_id
+=> 19
+
+>> a
+=> [3, 9, 8]
+
+>> a.object_id
+=> 70240541515340
+```
+
+Here, we can see that we have mutated the Array a by assigning a new value to a[1], but have not created a new Array. a[1] = 9 isn’t assigning anything to a; it is assigning 9 to a[1]; that is, this assignment changes a[1] so that it references the new object 9. You can see this by looking at a[1].object_id both before and after the assignment. Despite this change, though, a itself still points to the same (now mutated) Array we started with.
+
+This is normal behavior when working with objects that support indexed assignment: the assignment does cause a new reference to be made, but it is the collection element e.g., (a[1]) that is bound to the new object, not the collection (enclosing object) itself.
+
+Concatenation is Mutating
+
+The << operator is actually a method that is defined for some classes.
+
+Certain operations, like setters and indexed assignments should always be treated as mutating methods; others, like assignment and the assignment operators (+=, *=, etc) are always non-mutating.
