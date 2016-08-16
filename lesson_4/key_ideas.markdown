@@ -195,3 +195,7 @@ These types of issues arise not only with assignment, but also with assignment o
 ```
 
 Though it looks as if we are modifying s when we write s += ' World', we are actually creating a brand-new String with a new object id, and then binding s to that new object. We can see by looking at the object ids that a new object is created.
+
+String#concat is a mutating method, but it does not include a !.
+
+Consider the String#strip! method that removes leading and trailing whitespace from a String object:
