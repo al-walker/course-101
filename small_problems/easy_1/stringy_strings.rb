@@ -2,11 +2,7 @@
 def stringy(int)
   digits = []
   int.times do |d|
-    if d % 2 == 0
-      d = '1'
-    else
-      d = '0'
-    end
+    d.even? ? d = '1' : d = '0'
     digits << d
   end
   digits.join
