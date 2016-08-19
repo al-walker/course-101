@@ -1,7 +1,12 @@
+require 'pry'
+
 vehicles = ['car', 'car', 'truck', 'car', 'SUV', 'truck', 'motorcycle', 'motorcycle', 'car', 'truck']
 
 def count_occurrences(array)
-  hash = array.inject(Hash.new(0)) { |total, e| total[e] += 1 ;total}
+  hash = array.inject(Hash.new(0)) do |total, vehicle|
+    total[vehicle] += 1
+    total
+  end
   hash.each { |k, v| puts "#{k} => #{v}"}
 end
 
