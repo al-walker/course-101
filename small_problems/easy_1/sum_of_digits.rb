@@ -1,8 +1,11 @@
 require 'pry'
 
 def sum(integer)
-  integer.to_s.split('')
-  binding.pry
+  sum = 0
+  integer.to_s.split('').each do |n|
+    sum += n.to_i
+  end
+  sum
 end
 
 
