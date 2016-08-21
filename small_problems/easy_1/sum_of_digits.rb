@@ -1,8 +1,10 @@
 require 'pry'
+require 'rubocop'
 
 def sum(integer)
   sum = 0
-  integer.to_s.split('').each { |n| sum += n.to_i }
+  # integer.to_s.split('').each { |n| sum += n.to_i }
+  integer.to_s.split('').collect { |n| sum += n.to_i }
   sum
 end
 
