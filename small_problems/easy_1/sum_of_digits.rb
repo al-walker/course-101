@@ -2,8 +2,13 @@ require 'pry'
 require 'rubocop'
 
 def sum(integer)
-  str = integer.to_s.split('')
-  str.map(&:to_i).reduce(:+)
+  integer.to_s.split('').map(&:to_i).reduce(:+)
+
+  # Revised solution
+  # str = integer.to_s.split('')
+  # str.map(&:to_i).reduce(:+)
+
+  # first solution
   # sum = 0
   # integer.to_s.split('').each { |n| sum += n.to_i }
   # sum
