@@ -3,7 +3,7 @@ require 'rubocop'
 
 def sum(integer)
   str = integer.to_s.split('')
-  num = str.map { |n| n.to_i }
+  num = str.map(&:to_i)
   num.reduce(:+)
   # sum = 0
   # integer.to_s.split('').each { |n| sum += n.to_i }
