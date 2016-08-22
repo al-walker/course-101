@@ -2,10 +2,12 @@ require 'pry'
 require 'rubocop'
 
 def sum(integer)
-  sum = 0
+  str = integer.to_s.split('')
+  num = str.map { |n| n.to_i }
+  num.reduce(:+)
+  # sum = 0
   # integer.to_s.split('').each { |n| sum += n.to_i }
-  integer.to_s.split('').collect { |n| sum += n.to_i }
-  sum
+  # sum
 end
 
 puts sum(23) == 5
