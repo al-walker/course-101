@@ -3,7 +3,8 @@ bill = gets.chomp.to_i
 puts "What is the tip percentage?"
 percentage = gets.chomp.to_f
 
-total = bill * percentage
+tip = bill * percentage
+total = tip + bill
 
-puts "The tip is #{}"
+puts "The tip is #{tip}"
 puts "The total is #{total}"
