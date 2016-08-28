@@ -8,5 +8,6 @@ name = gets.chomp
 # else
 #   puts "Hello, #{name}."
 # end
-
-p name.chars.last == '!' ? 'why are we screaming?'.upcase : "Hello, #{name}."
+match = name.scan /!/
+# p name.chars.last == '!' ? 'why are we screaming?'.upcase : "Hello, #{name}."
+p name.chars.last == match.pop ? 'why are we screaming?'.upcase : "Hello, #{name}."
