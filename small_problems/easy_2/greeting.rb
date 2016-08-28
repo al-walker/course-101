@@ -2,11 +2,9 @@ require 'pry'
 
 print "What is your name?"
 name = gets.chomp
-
-match = name.scan /\w+!/
-
-if match
+if name.chars.last == '!'
   p 'why are we screaming?'.upcase
-  else
+else
   puts "Hello, #{name}."
-  end
+#p match.to_s == name ? screaming : greet
+end
