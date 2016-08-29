@@ -12,4 +12,4 @@ name = gets.chomp
 # p name.chars.last == '!' ? 'WHY ARE WE SCREAMING?' : "Hello, #{name}."
 
 match = name.scan(/!/)
-p name.chars.last == match.pop ? 'WHY ARE WE SCREAMING?' : "Hello, #{name}."
+p name.chars.last == match.pop ? "HELLO, #{name} WHY ARE WE SCREAMING?" : "Hello, #{name}."
