@@ -5,7 +5,9 @@ puts "Enter 's' to calculate the sum or 'p' to calculate the product."
 choice = gets.chomp.downcase
 
 if choice == 's'
-  p (1..number).reduce(:+)
+  puts "The sum of the integers between 1 and #{number} is
+   #{(1..number).reduce(:+)}"
 else
-  p (1..number).reduce(:*)
+  puts "The product of the integers between 1 and #{number} is
+   #{(1..number).reduce(:*)}"
 end
