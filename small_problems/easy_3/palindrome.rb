@@ -6,12 +6,17 @@ require 'pry'
 
 def palindrome?(string)
   array = string.chars
-  reverse = []
-  array.each_with_index do |l, idx|
-    reverse << l if l == string.reverse[idx]
-  end
-  reverse == array
+  string.chars == array.reverse
 end
+
+# def palindrome?(string)
+#   array = string.chars
+#   reverse = []
+#   array.each_with_index do |l, idx|
+#     reverse << l if l == string.reverse[idx]
+#   end
+#   reverse == array
+# end
 
 p palindrome?('madam') # == true
 p palindrome?('Madam') # == false          # (case matters)
