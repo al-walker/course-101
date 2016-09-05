@@ -2,13 +2,10 @@ require 'pry'
 def multisum(num)
   multiples = []
   (1..num).to_a.each do |n|
-    if n % 3 == 0 || n % 5 == 0
-    multiples << n
-    end
+    multiples << n if n % 3 == 0 || n % 5 == 0
   end
   multiples.reduce(:+)
 end
-
 
 p multisum(3) # == 3
 p multisum(5) # == 8
