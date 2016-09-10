@@ -1,21 +1,21 @@
 require 'pry'
 
 PRODUCTS = [
-{ name: "Thinkpad x210", price: 220 },
-{ name: "Thinkpad x220", price: 250 },
-{ name: "Thinkpad x250", price: 979 },
-{ name: "Thinkpad x230", price: 300 },
-{ name: "Thinkpad x230", price: 330 },
-{ name: "Thinkpad x230", price: 350 },
-{ name: "Thinkpad x240", price: 700 },
-{ name: "Macbook Leopard", price: 300 },
-{ name: "Macbook Air", price: 700 },
-{ name: "Macbook Pro", price: 600 },
-{ name: "Macbook", price: 1449 },
-{ name: "Dell Latitude", price: 200 },
-{ name: "Dell Latitude", price: 650 },
-{ name: "Dell Inspiron", price: 300 },
-{ name: "Dell Inspiron", price: 450 },
+  { name: "Thinkpad x210", price: 220 },
+  { name: "Thinkpad x220", price: 250 },
+  { name: "Thinkpad x250", price: 979 },
+  { name: "Thinkpad x230", price: 300 },
+  { name: "Thinkpad x230", price: 330 },
+  { name: "Thinkpad x230", price: 350 },
+  { name: "Thinkpad x240", price: 700 },
+  { name: "Macbook Leopard", price: 300 },
+  { name: "Macbook Air", price: 700 },
+  { name: "Macbook Pro", price: 600 },
+  { name: "Macbook", price: 1449 },
+  { name: "Dell Latitude", price: 200 },
+  { name: "Dell Latitude", price: 650 },
+  { name: "Dell Inspiron", price: 300 },
+  { name: "Dell Inspiron", price: 450 }
 ]
 
 query = {
@@ -32,7 +32,9 @@ query2 = {
 
 def search(query)
   PRODUCTS.select do |product|
-  product[:name].downcase.include?(query[:q]) && product[:price] >= query[:price_min] && product[:price] <= query[:price_max]
+    product[:name].downcase.include?(query[:q]) &&
+      product[:price] >= query[:price_min] &&
+      product[:price] <= query[:price_max]
   end
 end
 
