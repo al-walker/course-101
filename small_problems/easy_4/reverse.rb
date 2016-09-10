@@ -5,7 +5,7 @@ def reverse(string)
   reverse_string = []
   loop do
     reverse_string << array.pop
-    break unless array.size > 0
+    break if array.empty?
   end
   reverse_string.join
 end
