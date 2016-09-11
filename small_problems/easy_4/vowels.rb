@@ -1,4 +1,4 @@
-words = ['green', 'yellow', 'black', 'white']
+words = %w(green yellow black white)
 
 def remove_vowels!(array)
   array.each do |w|
