@@ -1,4 +1,5 @@
 require 'rubocop'
+require 'pry'
 
 def palindrome?(word)
   idx = 0
@@ -8,14 +9,14 @@ def palindrome?(word)
   return false if letters.size <= 1
   loop do
     if letters[idx] == letters[-1 - idx]
-      match << true
       break if idx == letters.size
+      match << true
       idx += 1
     else
       return false
     end
   end
-  letters.size == match.size - 1
+  letters.size == match.size
 end
 
-p palindrome?("  ")
+p palindrome?("madam i'm adam")
