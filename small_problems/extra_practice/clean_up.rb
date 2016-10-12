@@ -1,3 +1,5 @@
+require 'rubocop'
+
 =begin
 Given a string that consists of some words and an assortment of non-alphabetic characters, write a method that returns that string with all of the non-alphabetic characters replaced by spaces. If one or more non-alphabetic characters occur in a row, you should only have one space in the result (the result should never have consecutive spaces).
 
@@ -13,11 +15,7 @@ def cleanup(str)
   new_string = []
   characters = ['-', "'", '+', '*', '&', '?']
   str.chars.each do |c|
-    if characters.include?(c)
-      new_string << ' '
-    else
-      new_string << c
-    end
+    characters.include?(c) ? new_string << ' ' : new_string << c
   end
   new_string.join.squeeze
 end
