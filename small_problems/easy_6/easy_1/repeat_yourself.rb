@@ -1,8 +1,8 @@
-=begin
-inititalize a str
-inititalize an int
-loop print str int times
-=end
+require 'rubocop'
+
+# inititalize a str
+# inititalize an int
+# loop print str int times
 
 def repeat(str, int)
   int.times { p str }
