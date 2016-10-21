@@ -14,10 +14,12 @@ def count_occurrences(array)
   array.each do |e|
     element_hash[e] = array.count(e)
   end
-  element_hash
+  element_hash.each do |element, number|
+    puts "#{element} => #{number}"
+  end
 end
 
-p count_occurrences(vehicles)
+count_occurrences(vehicles)
 
 # car => 4
 # truck => 3
