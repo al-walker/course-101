@@ -1,14 +1,10 @@
 require 'pry'
 require 'rubocop'
 
-# Write a method that takes one argument, a positive integer, and returns the sum of its digits.
+# Write a method that takes one argument, a positive integer,
+# and returns the sum of its digits.
 
 # input - positive integer
-#
-# variables
-# int
-# integer_string
-# array_of_strings
 #
 # processes
 # -convert int to string
@@ -19,7 +15,7 @@ require 'rubocop'
 # output - sum of positive integers digits
 
 def sum(int)
-  int.to_s.chars.map { |s| s.to_i }.reduce(:+)
+  int.to_s.chars.map(&:to_i).reduce(:+)
 end
 
 puts sum(23) == 5
