@@ -1,3 +1,5 @@
+require 'rubocop'
+
 # Build a program that asks a user for the length and width
 # of a room in meters and then displays the area of the room
 # in both square meters and square feet.
@@ -12,7 +14,9 @@
 #
 # processes
 # get length
+# convert to integer
 # get width
+# convert to integer
 # compute area in meters area_meters
 # compute square feet area_feet = area_meters * 10.7639
 #
@@ -27,4 +31,5 @@ width = gets.chomp.to_i
 
 area_meters = length * width
 area_feet = area_meters * 10.7639
-puts "The area of the room is #{area_meters} square meters (#{area_feet} square feet)."
+puts "The area of the room is #{area_meters} square meters
+     (#{area_feet} square feet)."
