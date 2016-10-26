@@ -15,8 +15,8 @@
 #
 # pseudocode
 odd = []
-(1..99).map { |n| odd << n if n % 2 != 0 }
-odd.each { |n| p n}
+(1..99).map { |n| odd << n if n.odd? }
+odd.each { |n| p n }
 # iterate through
 # check if each number is odd
 # collect odd numbers into new array
