@@ -17,14 +17,15 @@ require 'rubocop'
 #
 # pseudocode
 integer = 0
-sum = 0
-product = 0
-operator = ''
+# sum = 0
+# product = 0
+# operator = ''
 numbers = []
 counter = 1
 puts ">> Please enter an integer greater than 0:"
 integer = gets.chomp.to_i
-# prompt for sum or pruduct with >> Enter 's' to compute the sum, 'p' to compute the product.
+# prompt for sum or pruduct with >> Enter 's' to compute the sum,
+# 'p' to compute the product.
 puts ">> Enter 's' to compute the sum, 'p' to compute the product."
 operator = gets.chomp
 loop do
@@ -34,9 +35,11 @@ loop do
 end
 # The sum of the integers between 1 and 5 is 15.
 if operator == 's'
-  puts "The sum of the integers between 1 and #{integer} is #{numbers.reduce(:+)}."
+  puts "The sum of the integers between 1 and
+  #{integer} is #{numbers.reduce(:+)}."
 else
-  puts "The product of the integers between 1 and #{integer} is #{(1..integer).reduce(:*)}."
+  puts "The product of the integers between 1 and
+  #{integer} is #{(1..integer).reduce(:*)}."
 end
 
 # tests
