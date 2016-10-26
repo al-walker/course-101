@@ -1,7 +1,10 @@
 require 'pry'
 require 'rubocop'
 
-# Create a simple tip calculator. The program should prompt for a bill amount and a tip rate. The program must compute the tip and then display both the tip and the total amount of the bill.
+# Create a simple tip calculator.
+# The program should prompt for a bill amount and a tip rate.
+# The program must compute the tip and
+# then display both the tip and the total amount of the bill.
 
 # input
 # bill amount
@@ -18,12 +21,12 @@ require 'rubocop'
 # output
 # display total amount
 
-def tip_calculator
-  bill_amount = 0.0
-  tip_rate = 0.0
-  total_amount = 0.0
-  tip = 0.0
+# bill_amount = 0.0
+# tip_rate = 0.0
+# total_amount = 0.0
+# tip = 0.0
 
+def tip_calculator
   puts "What is the bill?"
   bill_amount = gets.chomp.to_f
 
