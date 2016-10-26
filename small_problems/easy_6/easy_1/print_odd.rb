@@ -17,7 +17,9 @@
 odd = []
 (1..99).map { |n| odd << n if n.odd? }
 odd.each { |n| p n }
-# iterate through
+# create an array to hold odd numbers
+# create a range 1..99
+# iterate through range 
 # check if each number is odd
 # collect odd numbers into new array
 # loop through new array and print all the numbers
