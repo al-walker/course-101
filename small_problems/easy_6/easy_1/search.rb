@@ -17,7 +17,6 @@ require 'rubocop'
 # print message that states whether the 6th number appears in the first 5
 
 numbers = []
-last_number = ''
 counter = 0
 number_id = %w(1st 2nd 3rd 4th 5th)
 
