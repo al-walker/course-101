@@ -20,7 +20,8 @@ require 'rubocop'
 # check input_1 == 1 or 0
 #
 # output
-# true if input_1 == true && input_2 == false || input_1 == false && input_2 == true
+# true if input_1 == true && input_2 == false ||
+# input_1 == false && input_2 == true
 
 def xor?(input_1, input_2)
   input_1 || input_2 || !(input_1 || input_2)
