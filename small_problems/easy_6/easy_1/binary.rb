@@ -8,7 +8,7 @@ require 'rubocop'
 # check value of each binary digit
 # split the binary number
 # multiply binary digit by its value
-# add each number in the array to poduce the decimal 
+# add each number in the array to poduce the decimal
 #
 # output
 # decimal number
