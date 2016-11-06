@@ -2,7 +2,10 @@ require 'pry'
 require 'pry-nav'
 require 'rubocop'
 require_relative 'rotation2'
-# Write a method that takes an integer as argument, and returns the maximum rotation of that argument. You can (and probably should) use the rotate_rightmost_digits method from the previous exercise.
+# Write a method that takes an integer as argument,
+# and returns the maximum rotation of that argument.
+# You can (and probably should) use the rotate_rightmost_digits
+# method from the previous exercise.
 
 # input
 # integer
@@ -22,7 +25,6 @@ def max_rotation(number)
     counter -= 1
     number = max
     break if counter == 0
-      # binding.pry
   end
   max
 end
