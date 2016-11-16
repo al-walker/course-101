@@ -27,9 +27,7 @@ def buy_fruit(array)
   number = 0
   array.each do |fruit|
     number = fruit.pop
-    number.times do
-      new_list << fruit
-    end
+    number.times { new_list << fruit }
   end
   new_list.flatten
 end
