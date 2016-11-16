@@ -24,14 +24,12 @@ require 'rubocop'
 
 def buy_fruit(array)
   new_list = []
-  index = 0
   number = 0
   array.each do |fruit|
     number = fruit.pop
     number.times do
       new_list << fruit
     end
-    index += 1
   end
   new_list.flatten
 end
