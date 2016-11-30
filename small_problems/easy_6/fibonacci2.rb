@@ -18,7 +18,7 @@ def fib
   loop do
     fib_array << fib_array[counter] + fib_array[counter + 1]
     counter += 1
-    break if counter == 10000
+    break if counter == 10_000
   end
   fib_array
 end
