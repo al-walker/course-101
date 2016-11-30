@@ -22,7 +22,7 @@ def reverse!(array)
 end
 
 # tests
-list = [1,2,3,4]
+list = [1, 2, 3, 4]
 result = reverse!(list) # => [4,3,2,1]
 list == [4, 3, 2, 1]
 p list.object_id == result.object_id
