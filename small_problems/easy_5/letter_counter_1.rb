@@ -16,7 +16,8 @@
 # count each array of word chars
 # join each array of word chars
 # initialize a hash
-# insert the letter count as key and number of words with that # of letters as value
+# insert the letter count as key and number of words
+# with that # of letters as value
 
 # pseudocode
 
